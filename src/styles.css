@@ -63,3 +63,19 @@ nav a.active {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+/* Our Styles as we add Kendo UI */
+
+.form-group {
+  display: grid;
+  width: 100%;
+  gap: 10px;
+  grid-template-columns: auto 1fr auto;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.form-group input {
+  width: 100%;
+}

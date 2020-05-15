@@ -1,9 +1,9 @@
 <h2>My Heroes</h2>
 
-<div>
-  <label>Hero name:
-    <input #heroName />
-  </label>
+<div class="form-group">
+  <kendo-label [for]="heroName">Hero Name</kendo-label>
+    <input kendoTextBox id="heroName" #heroName />
+  
   <!-- (click) passes input value to add() and then clears the input -->
   <button (click)="add(heroName.value); heroName.value=''">
     add
