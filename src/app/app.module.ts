@@ -17,6 +17,8 @@ import { MessagesComponent }    from './messages/messages.component';
 import { InputsModule } from '@progress/kendo-angular-inputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LabelModule } from '@progress/kendo-angular-label';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
 
 
 
@@ -39,7 +41,9 @@ import { LabelModule } from '@progress/kendo-angular-label';
 
     BrowserAnimationsModule,
 
-    LabelModule
+    LabelModule,
+
+    ButtonsModule
   ],
   declarations: [
     AppComponent,

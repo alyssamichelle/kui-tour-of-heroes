@@ -1,21 +1,29 @@
 <h2>My Heroes</h2>
 
 <div class="form-group">
-  <kendo-label [for]="heroName">Hero Name</kendo-label>
-    <input kendoTextBox id="heroName" #heroName />
-  
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button (click)="add(heroName.value); heroName.value=''">
-    add
+
+  <kendo-formfield class="form-group">
+    <kendo-label [for]="heroName">Hero Name</kendo-label>
+    <input kendoTextBox id="heroName" #heroName [(ngModel)]="name" required />
+    <kendo-formhint>The name of our new hero!</kendo-formhint>
+    <kendo-formerror>A name is required to create a new hero.</kendo-formerror>
+
+    <!-- (click) passes input value to add() and then clears the input -->
+
+  </kendo-formfield>
+  <button kendoButton (click)="add(heroName.value); heroName.value=''">
+    Add
   </button>
 </div>
+
+<!-- <kendo-chip *ngFor="let hero of heroes" [label]="hero.name" [removable]="true" routerLink="/detail/{{hero.id}}" (remove)="delete(hero)"></kendo-chip> -->
 
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
-    <button class="delete" title="delete hero"
-      (click)="delete(hero)">x</button>
+    <!-- <button kendoButton class="delete" title="delete hero" (click)="delete(hero)">x</button> -->
+    <button kendoButton [icon]="'close'" class="delete" title="delete hero" (click)="delete(hero)"></button>
   </li>
 </ul>

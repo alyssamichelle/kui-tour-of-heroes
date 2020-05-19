@@ -12,6 +12,7 @@
     "@angular/platform-browser": "9.1.7",
     "@angular/platform-browser-dynamic": "9.1.7",
     "@angular/router": "9.1.7",
+    "@progress/kendo-angular-buttons": "^5.4.2",
     "@progress/kendo-angular-common": "^1.0.0",
     "@progress/kendo-angular-inputs": "^6.6.0",
     "@progress/kendo-angular-intl": "^2.0.0",
