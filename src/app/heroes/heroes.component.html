@@ -21,7 +21,8 @@
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
+      <div class="badge">{{hero.id}}</div> 
+      <div class="hero-name">{{hero.name}}</div>
     </a>
     <!-- <button kendoButton class="delete" title="delete hero" (click)="delete(hero)">x</button> -->
     <button kendoButton [icon]="'close'" class="delete" title="delete hero" (click)="delete(hero)"></button>
