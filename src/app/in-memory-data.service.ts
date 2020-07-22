@@ -8,7 +8,10 @@ import { Hero } from './hero';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const heroes = [
-      { id: 11, name: 'Twighlight Sparkle' },
+      { id: 8, name: 'Wassim' },
+      { id: 9, name: 'Salt' },
+      { id: 10, name: 'Loiane' },
+      { id: 11, name: 'Twighlight Sparkle is our really long test name' },
       { id: 12, name: 'Pinkie Pie' },
       { id: 13, name: 'Gummy' },
       { id: 14, name: 'Fluttershy' },
@@ -18,7 +21,6 @@ export class InMemoryDataService implements InMemoryDbService {
       { id: 18, name: 'Applejack' },
       { id: 19, name: 'Princess Luna' },
       { id: 20, name: 'Spike' },
-
       { id: 21, name: 'Scootaloo' },
       { id: 22, name: 'Discord' },
       { id: 23, name: 'Sweetie Belle' },

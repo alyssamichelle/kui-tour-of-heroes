@@ -1,20 +1,43 @@
 /* HeroesComponent's private CSS styles */
+
+/* Variables that need to be moved to global var file */
+
+/* $pony-pink: #f03c97; */
+/* $grass-green: #6ea965; */
+
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
+
+/* .pony-font {
+  color: #f03c97;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #8c2167;
+  font-family: 'Aladin', cursive;
+} */
+
+h2 {
+  /* @extend .pony-font; */
+  color: #f03c97;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #8c2167;
+  font-family: 'Aladin', cursive;
+  font-size: 110px;
+  margin: 10px 0;
+}
+
 .heroes {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 50vh;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 6% 2em 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .heroes li {
   cursor: pointer;
   background-color: #EEE;
   margin: .5em;
-  height: 2.2rem;
+  height: 3rem;
   width: 17em;
   border-radius: 4px;
   
@@ -29,33 +52,49 @@
   left: .1em;
 }
 
+
+
 .heroes a {
   color: #333;
   text-decoration: none;
 
   display: flex;
   width: 100%;
+  height: 100%;
 }
 
 .heroes .hero-name {
-  font-size: 20px;
-  line-height: 32px;
+  font-size: 2rem;
+  line-height: 3.2rem;
+
+  color: #8c2167;
+  /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8c2167; */
+  font-family: 'Leckerli One', cursive;
+  padding: 0 2px;
+
+  /* so really long names don't wrap */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 12rem;
 }
 
 .heroes a:hover {
   color: #607D8B;
 }
 
-.heroes .badge {
+.heroes .avatar {
+  --pony-pink: #f03c97;
+
   display: inline-block;
-  font-size: 12px;
-  line-height: 14px; 
+  font-size: 1rem;
+  line-height: 1.2rem; 
   margin-right: 10px;
   color: white;
   padding: 0.8em 0.7em 0 0.7em;
-  background-color: #405061;
-  height: 1.8em;
-  min-width: 16px;
+  background-color: var(--pony-pink);
+  height: 100%;
   border-radius: 4px 0 0 4px;
 }
 
@@ -78,3 +117,12 @@ button.delete {
   line-height: 0;
 }
 
+@media all and (max-width: 699px) {
+  .heroes li { 
+    margin: 1.2em;
+    width: 100vw;
+  }
+  .heroes .hero-name {
+    max-width: 21rem;
+  }
+}
