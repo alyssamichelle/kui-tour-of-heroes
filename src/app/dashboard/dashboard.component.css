@@ -22,7 +22,11 @@ h3 {
 h4 {
   position: relative;
 }
+
+/* TODO ALYSSA: Replace this grid business with kui cards */
 .grid {
+  display: flex;
+  justify-content: space-evenly;
   margin: 0;
 }
 .col-1-4 {

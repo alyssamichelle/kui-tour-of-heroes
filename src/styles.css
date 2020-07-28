@@ -1,12 +1,21 @@
 /* Global Styles */
-
+@font-face {
+  font-family: 'pony';
+  src: url('./assets/my-little-pony/PONY - MLP 2 - Version 2.ttf');
+}
 * {
+  margin: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  margin: 0;
 }
 h1 {
   color: #369;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 250%;
+  font-family: 'pony';
+  font-size: 4.2em;
+  margin-bottom: 0;
 }
 h2, h3 {
   color: #444;
@@ -14,7 +23,7 @@ h2, h3 {
   font-weight: lighter;
 }
 body {
-  margin: 2em;
+  background-color: #f7f7f7;
 }
 body, input[text], button {
   color: #333;
@@ -24,7 +33,10 @@ a {
   cursor: pointer;
   cursor: hand;
 }
-button {
+button, button.k-button, nav a {
+  font-size: 20px;
+}
+/* button {
   font-family: Arial;
   background-color: #eee;
   border: none;
@@ -40,46 +52,4 @@ button:disabled {
   background-color: #eee;
   color: #aaa;
   cursor: auto;
-}
-
-/* Navigation link styles */
-nav a {
-  padding: 5px 10px;
-  text-decoration: none;
-  margin-right: 10px;
-  margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 4px;
-}
-nav a:visited, a:link {
-  color: #607D8B;
-}
-nav a:hover {
-  color: #039be5;
-  background-color: #CFD8DC;
-}
-nav a.active {
-  color: #039be5;
-}
-
-/* everywhere else */
-* {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-/* Our Styles as we add Kendo UI */
-
-.form-group {
-  display: grid;
-  width: 100%;
-  gap: 10px;
-  grid-template-columns: auto 1fr auto;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.form-group div {
-  width: 100%;
-}
+} */

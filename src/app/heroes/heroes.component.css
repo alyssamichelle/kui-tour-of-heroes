@@ -15,14 +15,43 @@
   font-family: 'Aladin', cursive;
 } */
 
+:host {
+  display: block;
+  margin: 40px;
+}
+
 h2 {
+  position: relative;
+  margin: 10px 0 70px 0;
+  margin-bottom: 10rem;
+}
+
+h2, h2 * {
   /* @extend .pony-font; */
   color: #f03c97;
   -webkit-text-stroke-width: 3px;
   -webkit-text-stroke-color: #8c2167;
-  font-family: 'Aladin', cursive;
+  font-family: 'pony';
   font-size: 110px;
-  margin: 10px 0;
+}
+@media all and (max-width: 850px) {
+  h2 {
+    margin-bottom: 3rem;
+  }
+  .my {
+    display: block;
+  }
+}
+
+.my {
+  /* display: block; */
+  padding-right: 70px;
+}
+
+.y {
+  position: absolute;
+  top: 50px;
+  left: 15px;
 }
 
 .heroes {
@@ -51,8 +80,6 @@ h2 {
   background-color: #DDD;
   left: .1em;
 }
-
-
 
 .heroes a {
   color: #333;
