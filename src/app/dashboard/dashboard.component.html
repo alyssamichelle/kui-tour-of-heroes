@@ -1,11 +1,25 @@
-<h3>Top Heroes</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let hero of heroes" class="col-1-4"
+<h2><span class="pony-font-leading-t">T</span>op Heroes</h2>
+<!-- <div class="pony-card-group">
+  <a *ngFor="let hero of heroes"
       routerLink="/detail/{{hero.id}}">
-    <div class="module hero">
+    <div class="card">
       <h4>{{hero.name}}</h4>
     </div>
   </a>
+</div> -->
+<div class="pony-card-group">
+  <kendo-card [width]="'260px'" *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+    <kendo-card-header class="k-hbox">
+      <div>
+        <h3 kendoCardTitle>{{ hero.name }}</h3>
+        <p kendoCardSubtitle>{{ hero.id }}</p>
+      </div>
+    </kendo-card-header>
+    <!-- insert image here of pony -->
+    <img src="assets/retro mlp/pinkie-pie.png" alt="placeholder img for all ponies">
+    </a>
+  </kendo-card>
 </div>
 
 <app-hero-search></app-hero-search>

@@ -1,67 +1,40 @@
 /* DashboardComponent's private CSS styles */
-[class*='col-'] {
-  float: left;
-  padding-right: 20px;
-  padding-bottom: 20px;
-}
-[class*='col-']:last-of-type {
-  padding-right: 0;
-}
+
 a {
   text-decoration: none;
 }
-*, *:after, *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-h3 {
-  text-align: center;
-  margin-bottom: 0;
-}
-h4 {
-  position: relative;
-}
 
-/* TODO ALYSSA: Replace this grid business with kui cards */
-.grid {
+
+.pony-card-group {
   display: flex;
   justify-content: space-evenly;
-  margin: 0;
+  flex-wrap: wrap;
+  margin: 40px 0 0;
 }
-.col-1-4 {
-  width: 25%;
+
+/* CREATE STYLESHEET JUST FOR KENDO CARDS */
+
+.k-card {
+  overflow: hidden;
 }
-.module {
-  padding: 20px;
-  text-align: center;
-  color: #eee;
-  max-height: 120px;
-  min-width: 120px;
-  background-color: #3f525c;
-  border-radius: 2px;
+
+kendo-card {
+  margin-bottom: 20px;
+  height: 285px;
+  transition: background-color 0.4s ease;
 }
-.module:hover {
-  background-color: #EEE;
-  cursor: pointer;
-  color: #607d8b;
+
+kendo-card img {
+  max-width: 300px;
+  position: absolute;
+  top: 110px;
+  transition: top 0.4s ease;
 }
-.grid-pad {
-  padding: 10px 0;
+
+kendo-card img:hover {
+  top: 90px;
 }
-.grid-pad > [class*='col-']:last-of-type {
-  padding-right: 20px;
-}
-@media (max-width: 600px) {
-  .module {
-    font-size: 10px;
-    max-height: 75px; }
-}
-@media (max-width: 1024px) {
-  .grid {
-    margin: 0;
-  }
-  .module {
-    min-width: 60px;
-  }
+
+kendo-card:hover {
+  background-color: #f9f9f9;
 }

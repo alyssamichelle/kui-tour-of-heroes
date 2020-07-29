@@ -18,6 +18,8 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 
 
@@ -43,7 +45,9 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
     LabelModule,
 
-    ButtonsModule
+    ButtonsModule,
+
+    LayoutModule
   ],
   declarations: [
     AppComponent,

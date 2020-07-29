@@ -18,6 +18,7 @@
     "@progress/kendo-angular-intl": "^2.0.0",
     "@progress/kendo-angular-l10n": "^2.0.0",
     "@progress/kendo-angular-label": "^2.3.1",
+    "@progress/kendo-angular-layout": "^5.0.3",
     "@progress/kendo-angular-popup": "^3.0.0",
     "@progress/kendo-drawing": "^1.5.12",
     "@progress/kendo-theme-default": "latest",
@@ -26,7 +27,8 @@
     "jasmine-marbles": "0.6.0",
     "rxjs": "6.5.5",
     "tslib": "^2.0.0",
-    "zone.js": "0.10.3"
+    "zone.js": "0.10.3",
+    "@progress/kendo-angular-progressbar": "^0.2.3"
   },
   "scripts": {
     "ng": "ng",

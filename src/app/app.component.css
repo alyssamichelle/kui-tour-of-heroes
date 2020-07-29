@@ -1,9 +1,6 @@
 /* AppComponent's private CSS styles */
-
-h2 {
-  font-size: 2em;
-  margin-top: 0;
-  padding-top: 0;
+.content-wrapper {
+  margin: 40px;
 }
 
 nav {
