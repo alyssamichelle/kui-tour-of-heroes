@@ -1,8 +1,6 @@
 /* Global Styles */
-@font-face {
-  font-family: 'pony';
-  src: url('./assets/my-little-pony/PONY - MLP 2 - Version 2.ttf');
-}
+@import './assets/fonts.scss';
+@import './assets/colors.scss';
 
 * {
   margin: 0;
@@ -19,10 +17,10 @@ body {
   margin: 0;
 }
 
-h1, h1 *, h2, h2 * {
-  color: #f03c97;
+h1, h2 {
+  color: $hot-pink;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #8c2167;
+  // -webkit-text-stroke-color: #8c2167;
   font-family: 'pony';
   font-size: 110px;
 }
