@@ -1,12 +1,5 @@
-<h2><span class="pony-font-leading-t">T</span>op Heroes</h2>
-<!-- <div class="pony-card-group">
-  <a *ngFor="let hero of heroes"
-      routerLink="/detail/{{hero.id}}">
-    <div class="card">
-      <h4>{{hero.name}}</h4>
-    </div>
-  </a>
-</div> -->
+<h2>Top Heroes</h2>
+
 <div class="pony-card-group">
   <kendo-card [width]="'260px'" *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
@@ -17,7 +10,7 @@
       </div>
     </kendo-card-header>
     <!-- insert image here of pony -->
-    <img src="assets/retro mlp/pinkie-pie.png" alt="placeholder img for all ponies">
+    <img src="assets/images/retro-mlp/pinkie-pie.png" alt="placeholder img for all ponies">
     </a>
   </kendo-card>
 </div>
