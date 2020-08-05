@@ -1,4 +1,7 @@
 /* AppComponent's private CSS styles */
+
+@import 'src/assets/colors.scss';
+
 .content-wrapper {
   margin: 40px;
 }
@@ -10,22 +13,9 @@ nav {
 
 /* Our Styles as we add Kendo UI */
 
-.form-group {
-  display: grid;
-  width: 100%;
-  gap: 10px;
-  grid-template-columns: auto 1fr auto;
-  justify-content: space-between;
-  align-items: baseline;
-}
-
-.form-group div {
-  width: 100%;
-}
-
 .header {
   background: #a5e4eb;
-background: linear-gradient(0deg, #a5e4eb 0%, #e7f9fd 49%, #f7f7f7 100%);
+  background: linear-gradient(0deg, #a5e4eb 0%, #e7f9fd 49%, #f7f7f7 100%);
   border-bottom: 2px solid #a5e4eb;
   text-align: center;
   padding: 70px;

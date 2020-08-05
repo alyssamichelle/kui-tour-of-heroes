@@ -1,6 +1,6 @@
 /* Global Styles */
-@import './assets/fonts.scss';
-@import './assets/colors.scss';
+@import 'src/assets/fonts.scss';
+@import 'src/assets/colors.scss';
 
 * {
   margin: 0;
@@ -17,32 +17,105 @@ body {
   margin: 0;
 }
 
-h1, h2 {
+#fancy-font {
+  position: relative;
+  z-index: 1;
+}
+
+#fancy-font div, #fancy-font div * {
   color: $hot-pink;
-  -webkit-text-stroke-width: 1px;
-  // -webkit-text-stroke-color: #8c2167;
   font-family: 'pony';
   font-size: 110px;
 }
 
-h1, h1 * {
-  color: #4286df;
-  -webkit-text-stroke-color: #21318c;
-  font-size: 4.2rem;
+#fancy-font .outline, #fancy-font .extrude {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: inherit;
 }
 
-h1, h2 {
-  margin: 10px 0 2rem 0;
+#fancy-font .outline, #fancy-font .outline * {
+  font-family: pony-outline;
+  color: $purple;
+  z-index: -1;
+}
+
+#fancy-font .extrude, #fancy-font .extrude * {
+  font-family: pony-extrude;
+  color: #a5e4eb;
+  z-index: -2;
+}
+
+#fancy-font.salty {
+  &.first-letter .original::first-letter, &.first-letter .outline::first-letter, &.first-letter .extrude::first-letter {
+    -moz-font-feature-settings: "salt";
+    -webkit-font-feature-settings: "salt";
+    font-feature-settings: "salt";
+  }
+
+  .salt-me {
+    -moz-font-feature-settings: "salt";
+    -webkit-font-feature-settings: "salt";
+    font-feature-settings: "salt";
+  }
+
+  .alternate-style {
+    -moz-font-feature-settings: "ss01";
+    -webkit-font-feature-settings: "ss01";
+    font-feature-settings: "ss01";
+  }
+}
+
+*[data-text] {
+  color: $hot-pink;
+  font-family: 'pony';
+  font-size: 110px;
+  position: relative;
+  color: black;
+  z-index: 1;
+
+  &.salty {
+    &::first-letter, &::before::first-letter, &::after::first-letter { // this should work?
+      display: block;
+    // &::first-letter {
+      -moz-font-feature-settings: "salt";
+      -webkit-font-feature-settings: "salt";
+      font-feature-settings: "salt";
+    }
+  }
+
+  &::before, &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    text-align: inherit;
+    content: attr(data-text);
+  }
+
+  &::before {
+    font-family: pony-outline;
+    color: $purple;
+    z-index: -1;
+  }
+
+  &::after {
+    font-family: pony-extrude;
+    color: #a5e4eb;
+    z-index: -2;
+  }
+}
+
+h1 {
+  font-size: 4.2rem;
 }
 
 h3 {
   color: #444;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: lighter;
-}
-
-.pony-font-leading-t {
-  letter-spacing: -0.3em;
 }
 
 body {
