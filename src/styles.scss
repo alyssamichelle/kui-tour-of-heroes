@@ -12,60 +12,12 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+html {
+  font-size: 20px; // for my rems
+}
 
 body {
   margin: 0;
-}
-
-#fancy-font {
-  position: relative;
-  z-index: 1;
-}
-
-#fancy-font div, #fancy-font div * {
-  color: $hot-pink;
-  font-family: 'pony';
-  font-size: 110px;
-}
-
-#fancy-font .outline, #fancy-font .extrude {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  text-align: inherit;
-}
-
-#fancy-font .outline, #fancy-font .outline * {
-  font-family: pony-outline;
-  color: $purple;
-  z-index: -1;
-}
-
-#fancy-font .extrude, #fancy-font .extrude * {
-  font-family: pony-extrude;
-  color: #a5e4eb;
-  z-index: -2;
-}
-
-#fancy-font.salty {
-  &.first-letter .original::first-letter, &.first-letter .outline::first-letter, &.first-letter .extrude::first-letter {
-    -moz-font-feature-settings: "salt";
-    -webkit-font-feature-settings: "salt";
-    font-feature-settings: "salt";
-  }
-
-  .salt-me {
-    -moz-font-feature-settings: "salt";
-    -webkit-font-feature-settings: "salt";
-    font-feature-settings: "salt";
-  }
-
-  .alternate-style {
-    -moz-font-feature-settings: "ss01";
-    -webkit-font-feature-settings: "ss01";
-    font-feature-settings: "ss01";
-  }
 }
 
 [data-text] {
@@ -106,6 +58,10 @@ body {
 
 h1 {
   font-size: 4.2rem;
+}
+
+h2 {
+  font-size: 5.5rem;
 }
 
 h3 {
