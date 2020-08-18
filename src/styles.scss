@@ -68,43 +68,39 @@ body {
   }
 }
 
-*[data-text] {
+[data-text] {
+  z-index: 1;
+  position: relative;
+  display: inline-block;
   color: $hot-pink;
   font-family: 'pony';
-  font-size: 110px;
-  position: relative;
-  color: black;
-  z-index: 1;
-
+  
   &.salty {
-    &::first-letter, &::before::first-letter, &::after::first-letter { // this should work?
-      display: block;
-    // &::first-letter {
-      -moz-font-feature-settings: "salt";
-      -webkit-font-feature-settings: "salt";
-      font-feature-settings: "salt";
-    }
+    -moz-font-feature-settings: "salt";
+    -webkit-font-feature-settings: "salt";
+    font-feature-settings: "salt";
   }
 
   &::before, &::after {
-    position: absolute;
     top: 0;
-    left: 0;
     right: 0;
-    text-align: inherit;
+    left: 0;
+    position: absolute;
     content: attr(data-text);
+    display: block;
+    text-align: inherit;
   }
 
   &::before {
-    font-family: pony-outline;
-    color: $purple;
     z-index: -1;
+    color: $purple;
+    font-family: 'pony-outline';
   }
 
   &::after {
-    font-family: pony-extrude;
-    color: #a5e4eb;
     z-index: -2;
+    color: #a5e4eb;
+    font-family: 'pony-extrude';
   }
 }
 
