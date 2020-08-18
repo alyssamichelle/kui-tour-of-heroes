@@ -2,40 +2,8 @@
 
 /* Variables that need to be moved to global var file */
 
-/* $pony-pink: #f03c97; */
+$pony-pink: #f03c97;
 /* $grass-green: #6ea965; */
-
-@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
-
-/* .pony-font {
-  color: #f03c97;
-  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: #8c2167;
-  font-family: 'pony';
-  font-size: 110px;
-  margin: 10px 0 10rem 0;
-} */
-
-@media all and (max-width: 850px) {
-  h2 {
-    margin-bottom: 3rem;
-  }
-  .my {
-    display: block;
-  }
-}
-
-.my {
-  /* display: block; */
-  padding-right: 70px;
-}
-
-.y {
-  position: absolute;
-  top: 50px;
-  left: 15px;
-}
 
 .heroes {
     list-style-type: none;
@@ -80,7 +48,7 @@
   color: #8c2167;
   /* -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #8c2167; */
-  font-family: 'Leckerli One', cursive;
+  font-family: pony, cursive;
   padding: 0 2px;
 
   /* so really long names don't wrap */
@@ -95,15 +63,11 @@
 }
 
 .heroes .avatar {
-  --pony-pink: #f03c97;
-
   display: inline-block;
-  font-size: 1rem;
-  line-height: 1.2rem; 
   margin-right: 10px;
   color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: var(--pony-pink);
+  padding: 0.5em;
+  background-color: $pony-pink;
   height: 100%;
   border-radius: 4px 0 0 4px;
 }
