@@ -69,7 +69,9 @@ $pony-pink: #f03c97;
   padding: 0.5em;
   background-color: $pony-pink;
   height: 100%;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;    
+  max-width: 60px;
+  overflow: hidden;
 }
 
 button {

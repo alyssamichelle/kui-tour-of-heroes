@@ -10,18 +10,19 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];
-  avatar: string;
+  avatarLink: string;
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
     this.getHeroes();
-    this.setAvatar();
   }
 
   getHeroes(): void {
     this.heroService.getHeroes()
-    .subscribe(heroes => this.heroes = heroes);
+    .subscribe(heroes => {
+      this.heroes = heroes;
+    });
   }
   name: string;
   add(name: string): void {
@@ -38,7 +39,14 @@ export class HeroesComponent implements OnInit {
     this.heroService.deleteHero(hero).subscribe();
   }
 
-  setAvatar(): void {
-    this.avatar = "../assets/mlp-avatars/pony-1.png";
+  getAvatarLink(heroId): string {
+    let avatarLink = '../assets/mlp-avatars/pony-' + heroId + '.png';
+
+    if (heroId > 53) {
+      avatarLink = '../assets/mlp-avatars/pony-11.png';
+    }
+
+    return avatarLink;
   }
+
 }

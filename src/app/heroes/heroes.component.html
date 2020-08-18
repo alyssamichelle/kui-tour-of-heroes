@@ -21,7 +21,7 @@
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
-      <img class="avatar" [src]="avatar" alt="pony avatar img">
+      <img class="avatar" [src]="getAvatarLink(hero.id)" title="pony avatar img">
       <div class="hero-name">{{hero.name}}</div>
     </a>
     <!-- <button kendoButton class="delete" title="delete hero" (click)="delete(hero)">x</button> -->
