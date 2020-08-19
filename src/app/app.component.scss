@@ -9,6 +9,10 @@
 nav {
   display: flex;
   justify-content: space-evenly;
+
+  a {
+    z-index: 3;
+  }
 }
 
 /* Our Styles as we add Kendo UI */
@@ -19,4 +23,13 @@ nav {
   border-bottom: 2px solid #a5e4eb;
   text-align: center;
   padding: 70px;
+
+  img {
+    $img-width: 335px;
+
+    position: absolute;
+    top: 0;
+    left: calc(50vw - #{$img-width});
+    z-index: 0;
+  }
 }
