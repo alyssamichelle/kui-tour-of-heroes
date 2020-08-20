@@ -1,18 +1,11 @@
 <div id="search-component">
-  
-  <kendo-formfield class="form-group">
-    <kendo-label [for]="search-box" text="Hero Search"></kendo-label>
-    <input kendoTextBox #searchBox id="search-box" (input)="search(searchBox.value)" [(ngModel)]="searchTerm" />
-  </kendo-formfield>
-
-  <!-- <h4><label for="search-box">Hero Search</label></h4>
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" /> -->
-
-  <ul class="search-result">
-    <li *ngFor="let hero of heroes$ | async">
-      <a routerLink="/detail/{{hero.id}}">
-        {{hero.name}}
-      </a>
-    </li>
-  </ul>
+    <kendo-dropdownlist
+        [data]="heroes$ | async"
+        [filterable]="true"
+        [textField]="'name'"
+        [valueField]="id"
+        (filterChange)="search($event)"
+        delay="300"
+        >
+    </kendo-dropdownlist>
 </div>
