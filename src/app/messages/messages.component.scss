@@ -1,0 +1,7 @@
+@import 'src/assets/colors.scss';
+
+h2 {
+  &, h2::before, h2::after {
+    font-size: 3rem;
+  }
+}

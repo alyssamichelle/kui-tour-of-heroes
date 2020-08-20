@@ -1,5 +1,4 @@
 /* AppComponent's private CSS styles */
-
 @import 'src/assets/colors.scss';
 
 .content-wrapper {
@@ -18,9 +17,9 @@ nav {
 /* Our Styles as we add Kendo UI */
 
 .header {
-  background: #a5e4eb;
-  background: linear-gradient(0deg, #a5e4eb 0%, #e7f9fd 49%, #f7f7f7 100%);
-  border-bottom: 2px solid #a5e4eb;
+  background: $light-blue;
+  background: linear-gradient(0deg, $light-blue 0%, #e7f9fd 49%, #f7f7f7 100%);
+  border-bottom: 2px solid $light-blue;
   text-align: center;
   padding: 70px;
 
@@ -32,4 +31,8 @@ nav {
     left: calc(50vw - #{$img-width});
     z-index: 0;
   }
+}
+
+.main-title * {
+  color: $hot-pink;
 }
