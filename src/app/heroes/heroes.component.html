@@ -16,15 +16,12 @@
   </button>
 </div>
 
-<!-- <kendo-chip *ngFor="let hero of heroes" [label]="hero.name" [removable]="true" routerLink="/detail/{{hero.id}}" (remove)="delete(hero)"></kendo-chip> -->
-
 <ul class="heroes">
   <li *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
       <img class="avatar" [src]="getAvatarLink(hero.id)" title="pony avatar img">
       <div class="hero-name">{{hero.name}}</div>
     </a>
-    <!-- <button kendoButton class="delete" title="delete hero" (click)="delete(hero)">x</button> -->
     <button kendoButton [icon]="'close'" class="delete" title="delete hero" (click)="delete(hero)"></button>
   </li>
 </ul>
