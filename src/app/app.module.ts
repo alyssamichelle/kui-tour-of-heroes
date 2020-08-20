@@ -19,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+
 
 
 
@@ -47,7 +49,9 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 
     ButtonsModule,
 
-    LayoutModule
+    LayoutModule,
+
+    DropDownsModule
   ],
   declarations: [
     AppComponent,
