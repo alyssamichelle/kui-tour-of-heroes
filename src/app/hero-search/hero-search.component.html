@@ -1,11 +1,15 @@
-<div id="search-component">
+<div class="search-component">
+    <h3>Hop to a specific Hero:</h3>
     <kendo-dropdownlist
+        (open)="setInitialValue('')"
         [data]="heroes$ | async"
         [filterable]="true"
         [textField]="'name'"
         [valueField]="id"
         (filterChange)="search($event)"
-        delay="300"
+        (valueChange)="onValueChange($event)"
         >
     </kendo-dropdownlist>
+    <!-- TODO: figure out why this is jank vv -->
+    <!-- [defaultItem]="'Find your Hero ...'" -->
 </div>

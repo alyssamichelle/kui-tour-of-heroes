@@ -8,6 +8,7 @@ import {
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-search',
@@ -18,11 +19,22 @@ export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService, private router: Router) {}
 
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
+  }
+
+  public setInitialValue(): void {
+    this.search('');
+  }
+
+  // on dropdownlist value change, navigate to that hero's detail page
+  public onValueChange(hero: Hero): void {
+    if(hero.id) {
+      this.router.navigate(['/detail/' + hero.id]);
+    }
   }
 
   ngOnInit(): void {
