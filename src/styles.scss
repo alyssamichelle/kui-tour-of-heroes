@@ -91,3 +91,9 @@ a {
 button, button.k-button, nav a {
   font-size: 20px;
 }
+
+// override KUI styles
+
+.k-label-empty {
+  display: none;
+}

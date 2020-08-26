@@ -102,3 +102,30 @@ button.delete {
     max-width: 21rem;
   }
 }
+
+.new-hero-form {
+  display: flex;
+  align-items: center;
+  margin: 0.5em;
+  margin-bottom: 40px;
+  position: relative;
+
+  kendo-label {
+    position: absolute;
+    top: -22px;
+  }
+
+  input {
+    margin-bottom: 4px;
+  }
+
+  button {
+    margin-left: 20px;
+  }
+
+  // TODO: look into why this won't aply
+  // .k-label-empty.k-label {
+  //   display: none !important;
+  // }
+}
+
