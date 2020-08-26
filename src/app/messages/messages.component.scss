@@ -1,7 +1,39 @@
 @import 'src/assets/colors.scss';
 
+$messages-bg-color: #EEE;
+
+.messages-wrapper {
+  max-width: 50vw;
+  border: 2px solid $messages-bg-color;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.messages-header-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $messages-bg-color;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
 h2 {
   &, h2::before, h2::after {
     font-size: 3rem;
+    margin-right: 20px;
+    
   }
+}
+
+.messages {
+  list-style-type: none;
+
+  // pinstriping the messages
+  li:nth-child(odd) {
+    background-color: $messages-bg-color;
+  }
+  // if there is only one message, no stripes, thanks
+  li:first-child:last-child { background: $muted-bg; }
 }
