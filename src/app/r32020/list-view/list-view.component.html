@@ -1,0 +1,25 @@
+<!-- 
+<ul class="heroes">
+  <li *ngFor="let hero of heroes">
+    <a routerLink="/detail/{{hero.id}}">
+      <img class="avatar" [src]="getAvatarLink(hero.id)" title="pony avatar img">
+      <div class="hero-name">{{hero.name}}</div>
+    </a>
+    <button kendoButton [icon]="'close'" class="delete" title="delete hero" (click)="delete(hero)"></button>
+  </li>
+</ul> -->
+
+<kendo-listview [data]="ponies" [containerClass]="'k-d-flex k-flex-col k-flex-nowrap'">
+  <ng-template kendoListViewItemTemplate let-dataItem="dataItem" let-index="index" let-isFirst="isFirst"
+    let-isLast="isLast">
+    <div class="product" [class.border-bottom]="!isLast">
+      <strong>[{{ index }}]:</strong>
+      <span class="product-name">{{ dataItem.name }}</span>
+      <span class="item-postion">({{ isFirst ? 'first' : isLast ? 'last' : 'mid' }})</span>
+    </div>
+  </ng-template>
+</kendo-listview>
+
+<!-- Have a plain-Jane ListView -->
+<!-- Add on more info to ListView -->
+<!-- Add on search to ListView -->

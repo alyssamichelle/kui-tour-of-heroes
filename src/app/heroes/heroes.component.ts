@@ -24,6 +24,7 @@ export class HeroesComponent implements OnInit {
       this.heroes = heroes;
     });
   }
+  
   name: string;
   add(name: string): void {
     name = name.trim();
