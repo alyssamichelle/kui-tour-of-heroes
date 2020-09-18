@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, IterableDiffers } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, iif, merge, Observable, of, Subject } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
@@ -17,55 +17,113 @@ export class HeroService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  // DJK1: Heroes
+  heroes$ = this.http.get<Hero[]>(this.heroesUrl)
+    .pipe(
+      tap(_ => this.log('fetched heroes - declarative')),
+      shareReplay(1),
+      catchError(this.handleError<Hero[]>('getHeroes', []))
+    );
+
+  // DJK2: Hero
+  private heroSelectedSubject = new BehaviorSubject<number>(0);
+  // Expose the action as an observable for use by any components
+  heroSelectedAction$ = this.heroSelectedSubject.asObservable();
+
+  hero$ = this.heroSelectedAction$.pipe(
+    switchMap(id => {
+      const url = `${this.heroesUrl}/${id}`;
+      return this.http.get<Hero>(url).pipe(
+        tap(_ => this.log(`fetched hero - declarative id =${id}`)),
+        catchError(this.handleError<Hero>(`getHero id=${id}`))
+      )
+    })
+  );
+
+  // DJK3: Search
+  private heroSearchSubject = new Subject<string>();
+  // Expose the action as an observable for use by any components
+  heroSearchAction$ = this.heroSearchSubject.asObservable().pipe(
+    // wait 300ms after each keystroke before considering the term
+    debounceTime(300),
+
+    // ignore new term if same as previous term
+    distinctUntilChanged(),
+  );
+
+  // DJK3: Search
+  filteredHeroes$ = combineLatest([
+    this.heroes$,
+    this.heroSearchAction$]).pipe(
+      tap(([heroes, term]) => this.log(`term: ${term}`)),
+      map(([heroes, term]) =>
+        heroes.filter(hero => hero.name.toLowerCase().includes(term.toLowerCase()))),
+      tap(x => x.length ?
+        this.log(`found matching heroes`) :
+        this.log(`no matching heroes found`)),
+      catchError(this.handleError<Hero[]>('searchHeroes', []))
+    );
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
+  // DJK2: Hero
+  changeHero(id: number) {
+    // Emit the selected hero into the stream
+    this.heroSelectedSubject.next(id);
+  }
+
+  // DJK3: Search
+  searchHeroes(term: string) {
+    this.heroSearchSubject.next(term);
+  }
+
   /** GET heroes from the server */
-  getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl)
-      .pipe(
-        tap(_ => this.log('fetched heroes')),
-        catchError(this.handleError<Hero[]>('getHeroes', []))
-      );
-  }
+  // getHeroes(): Observable<Hero[]> {
+  //   return this.http.get<Hero[]>(this.heroesUrl)
+  //     .pipe(
+  //       tap(_ => this.log('fetched heroes')),
+  //       catchError(this.handleError<Hero[]>('getHeroes', []))
+  //     );
+  // }
 
-  /** GET hero by id. Return `undefined` when id not found */
-  getHeroNo404<Data>(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/?id=${id}`;
-    return this.http.get<Hero[]>(url)
-      .pipe(
-        map(heroes => heroes[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
-        }),
-        catchError(this.handleError<Hero>(`getHero id=${id}`))
-      );
-  }
+  // /** GET hero by id. Return `undefined` when id not found */
+  // getHeroNo404<Data>(id: number): Observable<Hero> {
+  //   const url = `${this.heroesUrl}/?id=${id}`;
+  //   return this.http.get<Hero[]>(url)
+  //     .pipe(
+  //       map(heroes => heroes[0]), // returns a {0|1} element array
+  //       tap(h => {
+  //         const outcome = h ? `fetched` : `did not find`;
+  //         this.log(`${outcome} hero id=${id}`);
+  //       }),
+  //       catchError(this.handleError<Hero>(`getHero id=${id}`))
+  //     );
+  // }
 
-  /** GET hero by id. Will 404 if id not found */
-  getHero(id: number): Observable<Hero> {
-    const url = `${this.heroesUrl}/${id}`;
-    return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<Hero>(`getHero id=${id}`))
-    );
-  }
+  // /** GET hero by id. Will 404 if id not found */
+  // getHero(id: number): Observable<Hero> {
+  //   const url = `${this.heroesUrl}/${id}`;
+  //   return this.http.get<Hero>(url).pipe(
+  //     tap(_ => this.log(`fetched hero id=${id}`)),
+  //     catchError(this.handleError<Hero>(`getHero id=${id}`))
+  //   );
+  // }
 
-  /* GET heroes whose name contains search term */
-  searchHeroes(term: string): Observable<Hero[]> {
-    if (!term.trim()) {
-      // if not search term, return all heroes.
-      return this.getHeroes();
-    }
-    return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-         this.log(`found heroes matching "${term}"`) :
-         this.log(`no heroes matching "${term}"`)),
-      catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
-  }
+  // /* GET heroes whose name contains search term */
+  // searchHeroes(term: string): Observable<Hero[]> {
+  //   if (!term.trim()) {
+  //     // if not search term, return all heroes.
+  //     return this.heroes$;
+  //   }
+  //   return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+  //     tap(x => x.length ?
+  //       this.log(`found heroes matching "${term}"`) :
+  //       this.log(`no heroes matching "${term}"`)),
+  //     catchError(this.handleError<Hero[]>('searchHeroes', []))
+  //   );
+  // }
 
   //////// Save methods //////////
 

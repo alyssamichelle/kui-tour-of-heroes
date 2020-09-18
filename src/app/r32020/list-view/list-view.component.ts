@@ -10,25 +10,25 @@ import { HeroService } from '../../hero.service';
   styleUrls: ['./list-view.component.scss']
 })
 export class ListViewComponent implements OnInit {
-  heroes: Hero[];
+  // heroes: Hero[];
   avatarLink: string;
   public ponies: any[] = ponies;
 
+  // DJK1: Heroes
+  heroes$ = this.heroService.heroes$;
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    // this.getHeroes();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => {
-        this.heroes = heroes;
-      });
-  }
-
-  
+  // getHeroes(): void {
+  //   this.heroService.getHeroes()
+  //     .subscribe(heroes => {
+  //       this.heroes = heroes;
+  //     });
+  // }
 
   getAvatarLink(heroId): string {
     let avatarLink = '../assets/mlp-avatars/pony-' + heroId + '.png';

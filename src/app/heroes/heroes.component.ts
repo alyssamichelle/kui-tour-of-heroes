@@ -9,21 +9,24 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./heroes.component.scss']
 })
 export class HeroesComponent implements OnInit {
-  heroes: Hero[];
+  //heroes: Hero[];
   avatarLink: string;
+
+   // DJK1: Heroes
+   heroes$ = this.heroService.heroes$;
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
-    this.getHeroes();
+    // this.getHeroes();
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes()
-    .subscribe(heroes => {
-      this.heroes = heroes;
-    });
-  }
+  // getHeroes(): void {
+  //   this.heroService.getHeroes()
+  //   .subscribe(heroes => {
+  //     this.heroes = heroes;
+  //   });
+  // }
   
   name: string;
   add(name: string): void {
@@ -31,12 +34,12 @@ export class HeroesComponent implements OnInit {
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
-        this.heroes.push(hero);
+        //this.heroes.push(hero);
       });
   }
 
   delete(hero: Hero): void {
-    this.heroes = this.heroes.filter(h => h !== hero);
+    //this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero).subscribe();
   }
 

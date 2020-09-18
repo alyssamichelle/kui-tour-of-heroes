@@ -2,8 +2,9 @@
 
 <h2 data-text="Top Heroes">Top Heroes</h2>
 
+<!-- DJK1: Heroes -->
 <div class="pony-card-group">
-  <kendo-card [width]="'260px'" *ngFor="let hero of heroes">
+  <kendo-card [width]="'260px'" *ngFor="let hero of heroes$ | async">
     <a routerLink="/detail/{{hero.id}}">
     <kendo-card-header class="k-hbox">
       <div>
