@@ -1,7 +1,7 @@
-import { Injectable, IterableDiffers } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { BehaviorSubject, combineLatest, iif, merge, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, of, Subject } from 'rxjs';
 import { catchError, debounceTime, distinctUntilChanged, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
@@ -21,6 +21,7 @@ export class HeroService {
   heroes$ = this.http.get<Hero[]>(this.heroesUrl)
     .pipe(
       tap(_ => this.log('fetched heroes - declarative')),
+      map(heroes => heroes.sort(this.compare)),
       shareReplay(1),
       catchError(this.handleError<Hero[]>('getHeroes', []))
     );
@@ -72,6 +73,21 @@ export class HeroService {
   changeHero(id: number) {
     // Emit the selected hero into the stream
     this.heroSelectedSubject.next(id);
+  }
+
+  // DJK1: Heroes
+  compare(a: Hero, b:Hero) {
+    // Use toUpperCase() to ignore character casing
+    const heroA = a.name.toUpperCase();
+    const heroB = b.name.toUpperCase();
+  
+    let comparison = 0;
+    if (heroA > heroB) {
+      comparison = 1;
+    } else if (heroA < heroB) {
+      comparison = -1;
+    }
+    return comparison;
   }
 
   // DJK3: Search
