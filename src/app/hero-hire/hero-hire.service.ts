@@ -10,10 +10,28 @@ import { Pony, ponies } from '../r32020/list-view/ponies';
 export class HeroHireService {
 
   /**
-   * Get a filtered list of the available heroes
+   * Get an initial list of all heroes
    */
   public getAvailableHeroes(): Observable<Pony[]> {
     return of([...ponies]);
+  }
+
+  /**
+   * Get a filtered list of available heroes
+   * @param kinds {string[]} Optional array of hero kinds to filter by
+   */
+  public getFilteredHeroes(kinds?: string[]): Observable<Pony[]> {
+    return of([...ponies]).pipe(
+      map((heroes: Pony[]) => {
+        if (kinds && kinds.length > 0) {
+          return heroes.filter((hero: Pony) => {
+            return hero.kind.filter((heroKind: string) => kinds.includes(heroKind)).length > 0;
+          });
+        } else {
+          return heroes;
+        }
+      })
+    );
   }
 
   /**

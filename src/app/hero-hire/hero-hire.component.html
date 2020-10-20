@@ -11,6 +11,18 @@
         [textField]="'name'"
         [valueField]="'id'"
       ></kendo-dropdownlist>
+      <kendo-formerror>Hero is required</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="heroKind">Filter by Kind</kendo-label>
+      <kendo-multiselect
+        #heroKind
+        formControlName="kind"
+        [data]="heroKinds$ | async"
+        (valueChange)="heroKindChanged($event)"
+      ></kendo-multiselect>
+      <kendo-formerror>Hero is required</kendo-formerror>
     </kendo-formfield>
   </form>
 </div>

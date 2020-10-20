@@ -53,4 +53,12 @@ export class HeroHireComponent implements OnInit {
     this.heroKinds$ = this.heroHireService.getUniqueKinds();
   }
 
+  /**
+   * Handle change events on the hero kind dropdown
+   * @param kinds {string[]} The array of hero kinds emitted by the component
+   */
+  public heroKindChanged(kinds: string[]): void {
+    this.availableHeroes$ = this.heroHireService.getFilteredHeroes(kinds);
+  }
+
 }

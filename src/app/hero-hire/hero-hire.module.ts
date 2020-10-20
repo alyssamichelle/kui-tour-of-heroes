@@ -18,7 +18,6 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
     ButtonsModule,
     LayoutModule,
     DropDownsModule,
-
   ]
 })
 export class HeroHireModule { }
