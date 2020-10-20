@@ -1,0 +1,9 @@
+h3.page-header {
+  margin-bottom: 20px;
+}
+
+.filter-form {
+  border: 1px solid rebeccapurple;
+  border-radius: 15px;
+  padding: 10px 15px;
+}

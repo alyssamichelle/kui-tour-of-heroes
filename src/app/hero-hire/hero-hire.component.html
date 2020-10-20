@@ -1,1 +1,16 @@
-<p>hero-hire works!</p>
+<h3 class="page-header">Hire a Hero!</h3>
+
+<div class="filter-form">
+  <form [formGroup]="heroFilterForm">
+    <kendo-formfield>
+      <kendo-label [for]="heroName">Hero Name</kendo-label>
+      <kendo-dropdownlist
+        #heroName
+        formControlName="heroName"
+        [data]="availableHeroes$ | async"
+        [textField]="'name'"
+        [valueField]="'id'"
+      ></kendo-dropdownlist>
+    </kendo-formfield>
+  </form>
+</div>

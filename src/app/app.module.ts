@@ -44,7 +44,7 @@ import { HeroHireModule } from './hero-hire/hero-hire.module';
     LayoutModule,
     DropDownsModule,
     R32020Module,
-    HeroHireModule
+    HeroHireModule,
   ],
   declarations: [
     AppComponent,
