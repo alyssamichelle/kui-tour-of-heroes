@@ -22,7 +22,7 @@ import { LayoutModule }            from '@progress/kendo-angular-layout';
 import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 
 import { R32020Module }            from './r32020/r32020.module';
-
+import { HeroHireModule } from './hero-hire/hero-hire.module';
 
 @NgModule({
   imports: [
@@ -43,7 +43,8 @@ import { R32020Module }            from './r32020/r32020.module';
     ButtonsModule,
     LayoutModule,
     DropDownsModule,
-    R32020Module
+    R32020Module,
+    HeroHireModule
   ],
   declarations: [
     AppComponent,
