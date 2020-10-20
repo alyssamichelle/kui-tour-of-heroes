@@ -5,7 +5,7 @@
         [data]="heroes$ | async"
         [filterable]="true"
         [textField]="'name'"
-        [valueField]="id"
+        [valueField]="'id'"
         (filterChange)="search($event)"
         (valueChange)="onValueChange($event)"
         >
