@@ -1,7 +1,8 @@
+import { BusyHttpInterceptor } from './common/busy-http-interceptor';
 import { NgModule }            from '@angular/core';
 import { BrowserModule }       from '@angular/platform-browser';
 import { FormsModule }         from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }            from './in-memory-data.service';
@@ -22,6 +23,9 @@ import { LayoutModule }            from '@progress/kendo-angular-layout';
 import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 
 import { R32020Module }            from './r32020/r32020.module';
+import { BusyComponent } from './common/busy/busy/busy.component';
+import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+
 
 
 @NgModule({
@@ -43,7 +47,8 @@ import { R32020Module }            from './r32020/r32020.module';
     ButtonsModule,
     LayoutModule,
     DropDownsModule,
-    R32020Module
+    R32020Module,
+    IndicatorsModule
   ],
   declarations: [
     AppComponent,
@@ -51,8 +56,12 @@ import { R32020Module }            from './r32020/r32020.module';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    BusyComponent
   ],
+  providers:[ {
+    provide: HTTP_INTERCEPTORS, useClass: BusyHttpInterceptor, multi: true
+  }],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
