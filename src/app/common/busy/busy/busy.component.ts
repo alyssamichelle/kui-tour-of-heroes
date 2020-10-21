@@ -1,11 +1,12 @@
 import { BusyService } from './../../busy.service';
-import { Component, OnInit } from '@angular/core'; 
+import { ChangeDetectionStrategy, Component } from '@angular/core'; 
 import { Observable } from 'rxjs';
 import { BusyState } from '../../busy-state.interface';
 @Component({
   selector: 'app-busy',
   templateUrl: './busy.component.html',
-  styleUrls: ['./busy.component.css']
+  styleUrls: ['./busy.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BusyComponent  {
 
