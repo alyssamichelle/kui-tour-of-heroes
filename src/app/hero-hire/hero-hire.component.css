@@ -1,4 +1,5 @@
-h3.page-header {
+h3.page-header,
+p {
   margin-bottom: 20px;
 }
 
@@ -6,4 +7,22 @@ h3.page-header {
   border: 1px solid rebeccapurple;
   border-radius: 15px;
   padding: 10px 15px;
+  width: 400px;
+  margin: 0 auto;
+}
+
+form input:not([type="checkbox"]) {
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+
+  margin-top: 25px;
+}
+
+.button-group button:first-of-type {
+  margin-right: 10px;
 }

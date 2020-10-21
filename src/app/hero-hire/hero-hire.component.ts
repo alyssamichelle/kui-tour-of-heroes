@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { HeroHireService } from './hero-hire.service';
-import { Pony } from '../r32020/list-view/ponies';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
+
+import { HeroHireService } from './services';
+
+import { Pony } from '../r32020/list-view/ponies';
 
 @Component({
   selector: 'app-hero-hire',
@@ -22,16 +23,6 @@ export class HeroHireComponent implements OnInit {
   ngOnInit(): void {
     this.initialiseForm();
     this.addSubscriptions();
-
-    this.heroHireService.getAvailableHeroes().subscribe(
-      (heroes: Pony[]) => {
-        console.log(heroes);
-      }
-    );
-
-    this.heroHireService.getUniqueKinds().subscribe(
-      (kinds: string[]) => console.log(kinds)
-    );
   }
 
   /**
@@ -39,9 +30,12 @@ export class HeroHireComponent implements OnInit {
    */
   private initialiseForm(): void {
     this.heroFilterForm = this.formBuilder.group({
-      heroName: [null, Validators.required],
-      gender: [null],
-      kind: [null]
+      hero: [null, Validators.required],
+      kind: [null],
+      bookingName: [null, Validators.required],
+      bookingEmail: [null, Validators.compose([Validators.required, Validators.email])],
+      bookingPhone: [null],
+      gdpr: [false, Validators.required]
     });
   }
 
@@ -59,6 +53,33 @@ export class HeroHireComponent implements OnInit {
    */
   public heroKindChanged(kinds: string[]): void {
     this.availableHeroes$ = this.heroHireService.getFilteredHeroes(kinds);
+
+    if (kinds.length > 0) {
+      // If the currently selected hero does not fit the new filter, we reset the value
+      const heroControl: AbstractControl = this.heroFilterForm.get('hero');
+      const selectedHero: Pony = heroControl.value;
+  
+      if (selectedHero !== null && selectedHero.kind.filter((kind: string) => kinds.includes(kind)).length === 0) {
+        heroControl.reset();
+      }
+    }
+  }
+
+  /**
+   * Check if the form is valid and submit
+   */
+  public onSubmit(): void {
+    console.log('submit');
+    console.log(this.heroFilterForm.valid);
+    console.log(this.heroFilterForm.value);
+  }
+
+  /**
+   * Reset the form
+   */
+  public onResetForm(): void {
+    this.heroFilterForm.reset();
+    this.availableHeroes$ = this.heroHireService.getAvailableHeroes();
   }
 
 }

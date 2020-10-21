@@ -1,12 +1,15 @@
 <h3 class="page-header">Hire a Hero!</h3>
 
+<p>Our heroes are available for private hire. Kids' parties, retirement bashes or <em>even</em> for genuine heroics.</p>
+
 <div class="filter-form">
-  <form [formGroup]="heroFilterForm">
+  <form class="k-form" [formGroup]="heroFilterForm" (ngSubmit)="onSubmit()">
+    <legend class="k-form-legend">Choose your hero!</legend>
     <kendo-formfield>
-      <kendo-label [for]="heroName">Hero Name</kendo-label>
+      <kendo-label [for]="heroName">Hero<sup>*</sup></kendo-label>
       <kendo-dropdownlist
         #heroName
-        formControlName="heroName"
+        formControlName="hero"
         [data]="availableHeroes$ | async"
         [textField]="'name'"
         [valueField]="'id'"
@@ -24,5 +27,36 @@
       ></kendo-multiselect>
       <kendo-formerror>Hero is required</kendo-formerror>
     </kendo-formfield>
+
+    <span class="k-form-separator"></span>
+
+    <kendo-formfield>
+      <kendo-label [for]="bookingName">Your Name<sup>*</sup></kendo-label>
+      <input type="text" formControlName="bookingName" #bookingName>
+      <kendo-formerror>Please leave your name</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="bookingEmail">Contact Email<sup>*</sup></kendo-label>
+      <input type="email" formControlName="bookingEmail" #bookingEmail>
+      <kendo-formerror>Please provide an email address</kendo-formerror>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="bookingPhone">Contact Telephone</kendo-label>
+      <input type="number" formControlName="bookingPhone" #bookingPhone>
+    </kendo-formfield>
+
+    <kendo-formfield>
+      <div class="wrap">
+          <label class="k-checkbox-label" [for]="gdpr">I accept GDPR (yes, it's that simple!)</label>
+          <input type="checkbox" kendoCheckBox formControlName="gdpr" #gdpr>
+      </div>
+    </kendo-formfield>
+
+    <div class="button-group">
+      <button kendoButton type="submit" [primary]="true">Submit</button>
+      <button kendoButton type="button" (click)="onResetForm()" [primary]="false">Reset</button>
+    </div>
   </form>
 </div>
