@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Hero } from './hero';
 import { MessageService } from './message.service';
+import { ToastService } from './toast/toast-service.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -19,7 +20,8 @@ export class HeroService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private readonly toastService: ToastService) { }
 
   /** GET heroes from the server */
   getHeroes(): Observable<Hero[]> {
@@ -119,5 +121,6 @@ export class HeroService {
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
+    this.toastService.propogate(false,`HeroService:${message}`)
   }
 }
