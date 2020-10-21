@@ -22,7 +22,7 @@ import { LayoutModule }            from '@progress/kendo-angular-layout';
 import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 
 import { R32020Module }            from './r32020/r32020.module';
-import { ExplodeComponent } from './explode/explode.component';
+import { ExplodeDirective } from './explode/explode.component';
 
 
 @NgModule({
@@ -53,7 +53,7 @@ import { ExplodeComponent } from './explode/explode.component';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    ExplodeComponent
+    ExplodeDirective
   ],
   bootstrap: [ AppComponent ]
 })

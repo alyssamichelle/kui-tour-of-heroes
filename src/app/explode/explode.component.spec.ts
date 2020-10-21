@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExplodeComponent } from './explode.component';
+import { ExplodeDirective } from './explode.component';
 
 describe('ExplodeComponent', () => {
-  let component: ExplodeComponent;
-  let fixture: ComponentFixture<ExplodeComponent>;
+  let component: ExplodeDirective;
+  let fixture: ComponentFixture<ExplodeDirective>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExplodeComponent ]
+      declarations: [ ExplodeDirective ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExplodeComponent);
+    fixture = TestBed.createComponent(ExplodeDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
