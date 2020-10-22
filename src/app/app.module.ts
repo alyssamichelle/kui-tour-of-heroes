@@ -51,6 +51,7 @@ import { httpInterceptorProviders } from './interceptors';
     MessagesComponent,
     HeroSearchComponent,
   ],
+  // interceptors
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent],
 })
