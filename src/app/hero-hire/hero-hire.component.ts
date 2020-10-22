@@ -17,6 +17,7 @@ export class HeroHireComponent implements OnInit {
 
   public heroBookingForm: FormGroup;
   public submitted: boolean;
+  public today: string;
 
   public availableHeroes$: Observable<Pony[]>;
   public heroKinds$: Observable<string[]>;
@@ -24,6 +25,7 @@ export class HeroHireComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private heroHireService: HeroHireService) { }
 
   ngOnInit(): void {
+    this.today = this.getToday();
     this.initialiseForm();
     this.addSubscriptions();
   }
@@ -38,6 +40,7 @@ export class HeroHireComponent implements OnInit {
       name: [null, Validators.required],
       email: [null, Validators.compose([Validators.required, Validators.email])],
       phone: [null, Validators.pattern(phoneUK)],
+      date: [null, Validators.required],
       gdpr: [false, Validators.requiredTrue]
     });
   }
@@ -76,11 +79,14 @@ export class HeroHireComponent implements OnInit {
     this.submitted = true;
 
     if (this.heroBookingForm.valid) {
-      const { hero, name, email, phone, gdpr } = this.heroBookingForm.value;
-      const hireRequest: HireRequest = { hero, name, email, phone, gdpr };
+      const { hero, name, email, phone, date, gdpr } = this.heroBookingForm.value;
+      const hireRequest: HireRequest = { hero, name, email, phone, date, gdpr };
 
       this.heroHireService.hireMyHero(hireRequest).subscribe(
-        (res) => alert(res),
+        (res) => {
+          alert(res);
+          this.onResetForm();
+        },
         (err) => console.error(err)
       );
     }
@@ -103,5 +109,25 @@ export class HeroHireComponent implements OnInit {
    */
   public get formControl(): {[key: string]: AbstractControl} {
     return this.heroBookingForm.controls;
+  }
+
+  /**
+   * Get today's date in string format accepted by the date picker
+   */
+  private getToday(): string {
+    const today = new Date();
+    const day: number = today.getDate();
+    const month: number = today.getMonth() + 1;
+    const year: number = today.getFullYear();
+
+    return `${year}-${this.appendZeroes(month)}-${this.appendZeroes(day)}`;
+  }
+
+  /**
+   * Append a zero to months and days less than 10
+   * @param val {number} The value to check
+   */
+  private appendZeroes(val: number): string {
+    return val < 10 ? `0${val}`: `${val}`;
   }
 }

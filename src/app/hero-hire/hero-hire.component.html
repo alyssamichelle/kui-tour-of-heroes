@@ -58,6 +58,14 @@
         Not a valid phone number
       </div>
     </kendo-formfield>
+
+    <kendo-formfield>
+      <kendo-label [for]="date">Hire Date<sup>*</sup></kendo-label>
+      <input type="date" formControlName="date" #date [value]="today" [min]="today">
+      <div class="error-field" *ngIf="submitted && formControl.date.hasError('required')">
+        Please select your hire date
+      </div>
+    </kendo-formfield>
     
     <kendo-formfield>
       <div class="wrap">
