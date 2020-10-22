@@ -26,3 +26,9 @@ form input:not([type="checkbox"]) {
 .button-group button:first-of-type {
   margin-right: 10px;
 }
+
+.error-field {
+  color: #f31700;
+  font-style: italic;
+  font-size: 12px;
+}

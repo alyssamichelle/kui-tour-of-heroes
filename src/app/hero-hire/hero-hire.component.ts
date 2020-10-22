@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HeroHireService } from './services';
 
 import { Pony } from '../r32020/list-view/ponies';
+import { numberOnly, phoneUS, phoneUK } from './helpers';
 
 @Component({
   selector: 'app-hero-hire',
@@ -13,7 +14,8 @@ import { Pony } from '../r32020/list-view/ponies';
 })
 export class HeroHireComponent implements OnInit {
 
-  public heroFilterForm: FormGroup;
+  public heroBookingForm: FormGroup;
+  public submitted: boolean;
 
   public availableHeroes$: Observable<Pony[]>;
   public heroKinds$: Observable<string[]>;
@@ -29,13 +31,13 @@ export class HeroHireComponent implements OnInit {
    * Initialise the heroFilterForm. You could do this in ngOnInit, but I like to keep that lifecycle hook as clean as possible
    */
   private initialiseForm(): void {
-    this.heroFilterForm = this.formBuilder.group({
+    this.heroBookingForm = this.formBuilder.group({
       hero: [null, Validators.required],
       kind: [null],
-      bookingName: [null, Validators.required],
-      bookingEmail: [null, Validators.compose([Validators.required, Validators.email])],
-      bookingPhone: [null],
-      gdpr: [false, Validators.required]
+      name: [null, Validators.required],
+      email: [null, Validators.compose([Validators.required, Validators.email])],
+      phone: [null, Validators.pattern(numberOnly)],
+      gdpr: [false, Validators.requiredTrue]
     });
   }
 
@@ -56,7 +58,7 @@ export class HeroHireComponent implements OnInit {
 
     if (kinds.length > 0) {
       // If the currently selected hero does not fit the new filter, we reset the value
-      const heroControl: AbstractControl = this.heroFilterForm.get('hero');
+      const heroControl: AbstractControl = this.heroBookingForm.get('hero');
       const selectedHero: Pony = heroControl.value;
   
       if (selectedHero !== null && selectedHero.kind.filter((kind: string) => kinds.includes(kind)).length === 0) {
@@ -69,17 +71,26 @@ export class HeroHireComponent implements OnInit {
    * Check if the form is valid and submit
    */
   public onSubmit(): void {
-    console.log('submit');
-    console.log(this.heroFilterForm.valid);
-    console.log(this.heroFilterForm.value);
+    // Mark the form as submitted to display the error fields
+    this.submitted = true;
   }
 
   /**
    * Reset the form
    */
   public onResetForm(): void {
-    this.heroFilterForm.reset();
+    // Mark the form as unsubmitted, otherwise the form validation may trigger
+    this.submitted = false;
+    // Reset all form fields
+    this.heroBookingForm.reset();
+    // Reset the heroes dropdown to the original list
     this.availableHeroes$ = this.heroHireService.getAvailableHeroes();
   }
 
+  /**
+   * Helper method for use on the template for fetching a form control with less code
+   */
+  public get formControl(): {[key: string]: AbstractControl} {
+    return this.heroBookingForm.controls;
+  }
 }

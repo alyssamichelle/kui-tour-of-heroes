@@ -3,18 +3,20 @@
 <p>Our heroes are available for private hire. Kids' parties, retirement bashes or <em>even</em> for genuine heroics.</p>
 
 <div class="filter-form">
-  <form class="k-form" [formGroup]="heroFilterForm" (ngSubmit)="onSubmit()">
+  <form class="k-form" [formGroup]="heroBookingForm" (ngSubmit)="onSubmit()">
     <legend class="k-form-legend">Choose your hero!</legend>
     <kendo-formfield>
-      <kendo-label [for]="heroName">Hero<sup>*</sup></kendo-label>
+      <kendo-label [for]="hero">Hero<sup>*</sup></kendo-label>
       <kendo-dropdownlist
-        #heroName
+        #hero
         formControlName="hero"
         [data]="availableHeroes$ | async"
         [textField]="'name'"
         [valueField]="'id'"
       ></kendo-dropdownlist>
-      <kendo-formerror>Hero is required</kendo-formerror>
+      <div class="error-field" *ngIf="submitted && formControl.hero.hasError('required')">
+        Please choose your hero
+      </div>
     </kendo-formfield>
 
     <kendo-formfield>
@@ -25,32 +27,45 @@
         [data]="heroKinds$ | async"
         (valueChange)="heroKindChanged($event)"
       ></kendo-multiselect>
-      <kendo-formerror>Hero is required</kendo-formerror>
     </kendo-formfield>
 
     <span class="k-form-separator"></span>
 
     <kendo-formfield>
-      <kendo-label [for]="bookingName">Your Name<sup>*</sup></kendo-label>
-      <input type="text" formControlName="bookingName" #bookingName>
-      <kendo-formerror>Please leave your name</kendo-formerror>
+      <kendo-label [for]="name">Your Name<sup>*</sup></kendo-label>
+      <input type="text" formControlName="name" #name>
+      <kendo-formerror *ngIf="submitted && formControl.name.hasError('required')">Please leave your name</kendo-formerror>
+      <div class="error-field" *ngIf="submitted && formControl.name.hasError('required')">
+        Please provide your name
+      </div>
     </kendo-formfield>
 
     <kendo-formfield>
-      <kendo-label [for]="bookingEmail">Contact Email<sup>*</sup></kendo-label>
-      <input type="email" formControlName="bookingEmail" #bookingEmail>
-      <kendo-formerror>Please provide an email address</kendo-formerror>
+      <kendo-label [for]="email">Contact Email<sup>*</sup></kendo-label>
+      <input type="email" formControlName="email" #email>
+      <div class="error-field" *ngIf="submitted && formControl.email.hasError('required')">
+        Please provide an email address
+      </div>
+      <div class="error-field" *ngIf="submitted && formControl.email.hasError('email')">
+        Not a valid email address
+      </div>
     </kendo-formfield>
-
+    
     <kendo-formfield>
-      <kendo-label [for]="bookingPhone">Contact Telephone</kendo-label>
-      <input type="number" formControlName="bookingPhone" #bookingPhone>
+      <kendo-label [for]="phone">Contact Telephone</kendo-label>
+      <input type="text" formControlName="phone" #phone>
+      <div class="error-field" *ngIf="submitted && formControl.phone.hasError('pattern')">
+        Not a valid phone number
+      </div>
     </kendo-formfield>
-
+    
     <kendo-formfield>
       <div class="wrap">
-          <label class="k-checkbox-label" [for]="gdpr">I accept GDPR (yes, it's that simple!)</label>
-          <input type="checkbox" kendoCheckBox formControlName="gdpr" #gdpr>
+        <label class="k-checkbox-label" [for]="gdpr">I accept GDPR (yes, it's that simple!)</label>
+        <input type="checkbox" kendoCheckBox formControlName="gdpr" #gdpr>
+        <div class="error-field" *ngIf="submitted && formControl.gdpr.hasError('required')">
+          Please state that you are happy with our GDPR policy
+        </div>
       </div>
     </kendo-formfield>
 
