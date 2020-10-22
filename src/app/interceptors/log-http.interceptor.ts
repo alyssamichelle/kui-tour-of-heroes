@@ -4,8 +4,7 @@ import {
   HttpRequest,
   HttpEvent,
   HttpResponse,
-  HttpResponseBase,
-  HttpErrorResponse
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -19,8 +18,8 @@ export class LogHttpInterceptor implements HttpInterceptor {
     this.logRequest(req);
     return next.handle(req).pipe(
       tap(
-        event => this.logResponse(event, req, started),
-        event => this.logError(event, req, started)
+        (event) => this.logResponse(event, req, started),
+        (event) => this.logError(event, req, started)
       )
     );
   }
