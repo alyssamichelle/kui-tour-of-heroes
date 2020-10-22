@@ -6,6 +6,7 @@ import { HeroHireService } from './services';
 
 import { Pony } from '../r32020/list-view/ponies';
 import { numberOnly, phoneUS, phoneUK } from './helpers';
+import { HireRequest } from './models';
 
 @Component({
   selector: 'app-hero-hire',
@@ -36,7 +37,7 @@ export class HeroHireComponent implements OnInit {
       kind: [null],
       name: [null, Validators.required],
       email: [null, Validators.compose([Validators.required, Validators.email])],
-      phone: [null, Validators.pattern(numberOnly)],
+      phone: [null, Validators.pattern(phoneUK)],
       gdpr: [false, Validators.requiredTrue]
     });
   }
@@ -73,6 +74,16 @@ export class HeroHireComponent implements OnInit {
   public onSubmit(): void {
     // Mark the form as submitted to display the error fields
     this.submitted = true;
+
+    if (this.heroBookingForm.valid) {
+      const { hero, name, email, phone, gdpr } = this.heroBookingForm.value;
+      const hireRequest: HireRequest = { hero, name, email, phone, gdpr };
+
+      this.heroHireService.hireMyHero(hireRequest).subscribe(
+        (res) => alert(res),
+        (err) => console.error(err)
+      );
+    }
   }
 
   /**

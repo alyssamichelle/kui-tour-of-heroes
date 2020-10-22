@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { concatAll, concatMap, distinct, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Pony, ponies } from '../../r32020/list-view/ponies';
+import { HireRequest } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -63,4 +64,11 @@ export class HeroHireService {
     );
   }
 
+  /**
+   * Send the hire request to the server
+   * @param hireRequest {HireRequest} The Hire Request object containing booking details
+   */
+  public hireMyHero(hireRequest: HireRequest): Observable<string> {
+    return of('Booking Successful');
+  }
 }
