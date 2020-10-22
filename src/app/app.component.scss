@@ -14,8 +14,8 @@ nav {
     text-decoration: none;
     color: $hot-pink;
 
-
-    &:hover, &.active {
+    &:hover,
+    &.active {
       color: $dark-pink;
     }
   }

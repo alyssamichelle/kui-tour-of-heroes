@@ -1,0 +1,27 @@
+{
+  "staticWebApps.appSubpath": "/",
+  "staticWebApps.apiSubpath": "",
+  "staticWebApps.appArtifactSubpath": "dist/kui-tour-of-heroes",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#fbb770",
+    "activityBar.activeBorder": "#049b51",
+    "activityBar.background": "#fbb770",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#049b51",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "editorGroup.border": "#fbb770",
+    "panel.border": "#fbb770",
+    "sideBar.border": "#fbb770",
+    "statusBar.background": "#f99e3f",
+    "statusBar.border": "#f99e3f",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#f7850e",
+    "titleBar.activeBackground": "#f99e3f",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.border": "#f99e3f",
+    "titleBar.inactiveBackground": "#f99e3f99",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "peacock.color": "#f99e3f"
+}
