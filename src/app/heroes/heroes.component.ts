@@ -30,7 +30,134 @@ import { HeroService } from '../hero.service';
         <button kendoButton [icon]="'close'" class="delete" title="delete hero" (click)="delete(hero)"></button>
       </li>
     </ul>`,
-  styleUrls: ['./heroes.component.scss'],
+  styles: [
+    `
+      /* HeroesComponent's private CSS styles */
+
+      /* Variables that need to be moved to global var file */
+
+      $pony-pink: #f03c97;
+      /* $grass-green: #6ea965; */
+
+      .heroes {
+        list-style-type: none;
+        padding: 0;
+        margin: 0 6% 2em 0;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .heroes li {
+        cursor: pointer;
+        background-color: #eee;
+        margin: 0.5em;
+        height: 3rem;
+        width: 17em;
+        border-radius: 4px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .heroes li:hover {
+        color: #607d8b;
+        background-color: #ddd;
+        left: 0.1em;
+      }
+
+      .heroes a {
+        color: #333;
+        text-decoration: none;
+
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+
+      .heroes .hero-name {
+        font-size: 2rem;
+        line-height: 3.2rem;
+
+        color: #8c2167;
+        /* -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #8c2167; */
+        font-family: pony, cursive;
+        padding: 0 2px;
+
+        /* so really long names don't wrap */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 11rem;
+      }
+
+      .heroes a:hover {
+        color: #607d8b;
+      }
+
+      .heroes .avatar {
+        display: inline-block;
+        margin-right: 10px;
+        color: white;
+        padding: 0.5em;
+        background-color: $pony-pink;
+        height: 100%;
+        border-radius: 4px 0 0 4px;
+        max-width: 60px;
+        overflow: hidden;
+      }
+
+      button {
+        background-color: #eee;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        cursor: hand;
+        font-family: Arial;
+      }
+
+      button:hover {
+        background-color: #cfd8dc;
+      }
+
+      button.delete {
+        margin-right: 5px;
+        line-height: 0;
+      }
+
+      @media all and (max-width: 699px) {
+        .heroes li {
+          margin: 1.2em;
+          width: 100vw;
+        }
+        .heroes .hero-name {
+          max-width: 21rem;
+        }
+      }
+
+      .new-hero-form {
+        display: flex;
+        align-items: center;
+        margin: 0.5em;
+        margin-bottom: 40px;
+        position: relative;
+      }
+      .new-hero-form kendo-label {
+        position: absolute;
+        top: -22px;
+      }
+
+      .new-hero-form input {
+        margin-bottom: 4px;
+      }
+
+      .new-hero-form button {
+        margin-left: 20px;
+      }
+    `,
+  ],
 })
 export class HeroesComponent implements OnInit {
   heroes: Hero[];

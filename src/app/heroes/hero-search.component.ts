@@ -25,7 +25,18 @@ import { Router } from '@angular/router';
     <!-- TODO: figure out why this is jank vv -->
     <!-- [defaultItem]="'Find your Hero ...'" -->
   </div>`,
-  styleUrls: ['./hero-search.component.scss'],
+  styles: [
+    `
+      .search-component {
+        display: flex;
+
+        h3 {
+          display: inline-block;
+          margin-right: 20px;
+        }
+      }
+    `,
+  ],
 })
 export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
