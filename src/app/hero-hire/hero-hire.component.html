@@ -66,7 +66,7 @@
       </div>
     </kendo-formfield>
     
-    <kendo-formfield>
+    <kendo-formfield *ngIf="location === locationEnum.EUROPE || location === locationEnum.UK">
       <div class="wrap">
         <label class="k-checkbox-label" [for]="gdpr">I accept GDPR (yes, it's that simple!)</label>
         <input type="checkbox" kendoCheckBox formControlName="gdpr" #gdpr>

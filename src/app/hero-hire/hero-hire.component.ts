@@ -30,7 +30,7 @@ export class HeroHireComponent implements OnInit {
 
   ngOnInit(): void {
     this.today = this.getToday();
-    this.location = Location.USA;
+    this.location = Location.UK;
     this.initialiseForm();
     this.addSubscriptions();
   }
@@ -44,10 +44,12 @@ export class HeroHireComponent implements OnInit {
       kind: [null],
       name: [null, Validators.required],
       email: [null, Validators.compose([Validators.required, Validators.email])],
-      phone: [null, Validators.pattern(phoneUK)],
+      phone: [null, Validators.pattern(numberOnly)],
       date: [null, Validators.required],
-      gdpr: [false, Validators.requiredTrue]
+      gdpr: [false]
     });
+
+    this.setConditonalValidators();
   }
 
   /**
@@ -120,7 +122,22 @@ export class HeroHireComponent implements OnInit {
    * Add some conditional validators to the form based on location
    */
   private setConditonalValidators(): void {
+    // UK and Europe need the GDPR field
+    if (this.location === Location.EUROPE || this.location === Location.UK) {
+      this.heroBookingForm.get('gdpr').setValidators(Validators.requiredTrue);
+    }
 
+    // UK needs the UK phone number validator
+    if (this.location === Location.UK) {
+      this.heroBookingForm.get('phone').setValidators(Validators.pattern(phoneUK));
+    }
+
+    // USA needs the US phone number validator
+    if (this.location === Location.USA) {
+      this.heroBookingForm.get('phone').setValidators(Validators.pattern(phoneUS));
+    }
+
+    // So sorry anyone in any other country - there are too many variations and my RegEx skills are not on that scale!
   }
 
   /**
