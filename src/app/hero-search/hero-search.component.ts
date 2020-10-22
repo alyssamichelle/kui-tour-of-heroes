@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable, Subject } from 'rxjs';
 
-import {
-   debounceTime, distinctUntilChanged, switchMap
- } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -12,8 +10,22 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hero-search',
-  templateUrl: './hero-search.component.html',
-  styleUrls: [ './hero-search.component.scss' ]
+  template: ` <div class="search-component">
+    <h3>Hop to a specific Hero:</h3>
+    <kendo-dropdownlist
+      (open)="setInitialValue('')"
+      [data]="heroes$ | async"
+      [filterable]="true"
+      [textField]="'name'"
+      [valueField]="id"
+      (filterChange)="search($event)"
+      (valueChange)="onValueChange($event)"
+    >
+    </kendo-dropdownlist>
+    <!-- TODO: figure out why this is jank vv -->
+    <!-- [defaultItem]="'Find your Hero ...'" -->
+  </div>`,
+  styleUrls: ['./hero-search.component.scss'],
 })
 export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
@@ -32,7 +44,7 @@ export class HeroSearchComponent implements OnInit {
 
   // on dropdownlist value change, navigate to that hero's detail page
   public onValueChange(hero: Hero): void {
-    if(hero.id) {
+    if (hero.id) {
       this.router.navigate(['/detail/' + hero.id]);
     }
   }
@@ -46,7 +58,7 @@ export class HeroSearchComponent implements OnInit {
       distinctUntilChanged(),
 
       // switch to new search observable each time the term changes
-      switchMap((term: string) => this.heroService.searchHeroes(term)),
+      switchMap((term: string) => this.heroService.searchHeroes(term))
     );
   }
 }
