@@ -13,11 +13,10 @@ import { Router } from '@angular/router';
   template: ` <div class="search-component">
     <h3>Hop to a specific Hero:</h3>
     <kendo-dropdownlist
-      (open)="setInitialValue('')"
+      (open)="setInitialValue()"
       [data]="heroes$ | async"
       [filterable]="true"
       [textField]="'name'"
-      [valueField]="id"
       (filterChange)="search($event)"
       (valueChange)="onValueChange($event)"
     >
