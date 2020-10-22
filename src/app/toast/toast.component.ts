@@ -4,8 +4,7 @@ import { NotificationService } from "@progress/kendo-angular-notification";
 
 @Component({
   selector: "app-toast",
-  template: `<ng-template #template>{{msg}}</ng-template>`,
-  styleUrls: ["./toast.component.scss"],
+  template: `<ng-template #template>{{msg}}</ng-template>`, 
 })
 export class ToastComponent implements OnInit {
   @ViewChild('template', { read: TemplateRef })
