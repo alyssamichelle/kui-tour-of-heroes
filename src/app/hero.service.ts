@@ -26,6 +26,7 @@ export class HeroService {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
         tap(_ => this.log('fetched heroes')),
+        map(heroes => heroes.sort((a, b) => b.id - a.id )),
         catchError(this.handleError<Hero[]>('getHeroes', []))
       );
   }
