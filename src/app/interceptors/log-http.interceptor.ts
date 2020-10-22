@@ -25,14 +25,14 @@ export class LogHttpInterceptor implements HttpInterceptor {
   }
 
   private logRequest(req: HttpRequest<any>) {
-    console.groupCollapsed(`${prefixReq} Log Http Request`);
+    console.groupCollapsed(`${prefixReq} Log Http Request 🌐`);
     console.log(`${req.method} "${req.urlWithParams}"`);
     console.groupEnd();
   }
 
   private logResponse(event: HttpEvent<any>, req: HttpRequest<any>, started: number) {
     if (event instanceof HttpResponse) {
-      console.groupCollapsed(`${prefixRes} Log Http Response`);
+      console.groupCollapsed(`${prefixRes} Log Http Response 🥳`);
       const elapsed = Date.now() - started;
       console.log(
         `HTTP: Response for ${req.urlWithParams}\nreturned with status ${event.status}\nand took ${elapsed} ms`
@@ -42,7 +42,7 @@ export class LogHttpInterceptor implements HttpInterceptor {
   }
   private logError(event: HttpEvent<any>, req: HttpRequest<any>, started: number) {
     if (event instanceof HttpErrorResponse) {
-      console.groupCollapsed(`${prefixRes} Log Http Response Error`);
+      console.groupCollapsed(`${prefixRes} Log Http Response Error 😭`);
       const elapsed = Date.now() - started;
       console.log(
         `Http Response Error for ${req.urlWithParams}\nreturned with status ${event.status}\nand took ${elapsed} ms`

@@ -1,9 +1,15 @@
 import { HTTP_INTERCEPTORS, HttpHeaders } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 import { LogHttpInterceptor } from './log-http.interceptor';
+import { LogHeadersInterceptor } from './log-headers.interceptor';
 
 export const httpInterceptorProviders = [
   // Log Http: Should be first-ish so it can log the Http call happening in and out (last).
   { provide: HTTP_INTERCEPTORS, useClass: LogHttpInterceptor, multi: true },
+  // SSL, Auth, CSRF:Now that it has passed the readonly test, we want to stuff headers and proceed.
+  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  // Log headers: Must come after the headers are stuffed.
+  { provide: HTTP_INTERCEPTORS, useClass: LogHeadersInterceptor, multi: true },
 ];
 
 /**
@@ -35,7 +41,4 @@ export const httpInterceptorProviders = [
  *
  * Order is important
  * Angular applies interceptors in the order that you provide them. If you provide interceptors A, then B, then C, requests will flow in A->B->C and responses will flow out C->B->A.
-
-
-
  */
