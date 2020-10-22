@@ -1,4 +1,4 @@
-import { Directive, HostListener, OnInit } from '@angular/core';
+import {Directive, HostListener, OnInit} from '@angular/core';
 import html2canvas from 'html2canvas';
 
 @Directive({
@@ -10,21 +10,18 @@ export class ExplodeDirective implements OnInit {
 
   ngOnInit(): void {}
 
+  /** listening to mouse buttons 3, prevent its default action */
   @HostListener('mouseup', ['$event'])
-  handleup(ev: MouseEvent) {
-    console.log(ev.button, ev);
-    if (ev.button > 2) {
-      ev.preventDefault();
-    }
-    }
+  handleUp(ev: MouseEvent) {
+    ev.button === 3 && ev.preventDefault();
+  }
 
   @HostListener('mousedown', ['$event'])
   async explodeIt(ev: MouseEvent) {
-    /** BOOM! get the target out of the event */
     const target = ev.target as HTMLElement;
-    console.log(ev.button, ev);
-    if (ev.button>2) {
+    if (ev.button === 3) {
       ev.preventDefault();
+      /** BOOM! get the target out of the event */
       makeItGoBoom(target);
     }
   }
@@ -36,32 +33,37 @@ export class ExplodeDirective implements OnInit {
  */
 
 async function makeItGoBoom(target: HTMLElement) {
-  const noWhitePixels = (pixel: Pixel): boolean => !pixel.rgba.every((color) => color > 240);
+  const noBlackAndWhitePixels = (pixel: Pixel): boolean =>
+    /** check RGB, and ignore Alpha (opacity) */
+    !pixel.rgba.every((color, i) => (i === 3 ? true : color > 240 || color < 10));
 
   /** extract some data from the target */
-  const width = target.offsetWidth;
   const {left, top, bottom, right} = target.getBoundingClientRect();
   const targetWidth = right - left;
-  const targetHeight = bottom - top;
-  const baseQualifyNumber = findBaseQualify();
+  
   /** extract the target as an Uint8ClampedArray of colors */
   const colorData = await extractColors(target);
+  const pixelCount = Math.floor(colorData.length/4)
 
   /** create a canvas to draw the explosion onto */
   const particleCanvas = createParticleCanvas();
   const ctx = particleCanvas.getContext('2d');
 
-  /** create an array of particles that we can animate */
-  const particles = Array.from({length: targetHeight * targetWidth}, createPixel)
-    .filter(noWhitePixels)
-    // .map(pixel2particle)
-    .reduce(getEvenSpreadParticles, [] as Particle[]);
+  /** create an array of pixels that we can animate */
+  const pixels = Array.from({length: pixelCount}, createPixel)
+    /** but drop the white pixels */
+    .filter(noBlackAndWhitePixels);
+
+  /* we don't want to draw all the pixels, so calculate */
+  const spread = calculateSpread(pixels.length);
+
+  const particles = pixels.reduce(getEvenSpreadParticles, [] as Particle[]);
 
   /** for giggles, log some "statistics" */
   console.log({
-    'original Pixels': (targetHeight * targetWidth).toLocaleString('us-us'),
+    'original Pixels': pixelCount.toLocaleString('us-us'),
     'number of particles': particles.length.toLocaleString('us-us'),
-    'spread by': Math.max(baseQualifyNumber, Math.floor(targetHeight * targetWidth * 0.00015)).toLocaleString('us-us'),
+    'spread by': spread.toLocaleString('us-us'),
   });
   /** "play" the explosion */
   await triggerExplosion(particles);
@@ -69,78 +71,53 @@ async function makeItGoBoom(target: HTMLElement) {
 
   return;
 
+  /** create a Pixel */
   function createPixel(_, i): Pixel {
     const y = Math.floor(i / targetWidth);
     const x = i - y * targetWidth;
     const offsset = i * 4;
     const rgba = colorData.slice(offsset, offsset + 4);
-    // const rgba = `rgba(${rgbaRaw[0]}, ${rgbaRaw[1]}, ${rgbaRaw[2]} , 1)`
     return {x: x + left, y: y + top, rgba, ctx};
-  }
-
-  /** make sure there is an interesting amount of pixels. too much will be slow, too little is boring. */
-  function qualify(i: number, pixels: Pixel[]) {
-    return i % baseQualifyNumber === 0;
   }
 
   /** go over the array, and only convert qualifying pixes to particals */
   function getEvenSpreadParticles(particles: Particle[], pixel: Pixel, i: number, pixels: Pixel[]): Particle[] {
-    return qualify(i, pixels) ? particles.concat([pixel2particle(pixel)]) : particles;
+    return i % spread === 0 ? particles.concat([pixel2particle(pixel)]) : particles;
   }
 
   /**
-   * quick and dirty, surely there is a nicer way to do this.
-   * It makes sure that that there are at least 5500 and amx 10000
-   * particles in the animation. depending on the size of the originating canvas
+   * Calculate the modules number 
+   * so we have between 5500 and 12.500 particles.
+   * this way we always have an interesting explosion
    */
-  function findBaseQualify() {
-    const pixelSize = targetHeight * targetWidth;
-    let i = 5 + getRandomInt(25);
-    let sample = Math.floor(pixelSize / i);
-    while (sample < 5500 || sample > 10000) {
-      i += (sample < 5500 ? -1 : 1) * (2 + getRandomInt(5));
-      sample = Math.floor(pixelSize / i);
-      if (pixelSize < 5500 || i < 1) {
-        return 1;
-      }
-    }
-    return i;
+  function calculateSpread(pixNum) {
+    const minRandom = Math.max(1, Math.floor(pixNum / 5500));
+    const maxRandom = Math.min(300, Math.floor(pixNum / 12500));
+    const r = minRandom + getRandomInt(maxRandom - minRandom);
+    return r;
   }
 }
 
 /**
  * Fetch all the colors available in the viewpot and return an array with unique colors, that are not white(ish)
  */
-async function extractColors(htmlDom: HTMLElement): Promise<Uint8ClampedArray> {
+async function extractColors(elm: HTMLElement): Promise<Uint8ClampedArray> {
   try {
-    return (
-      await html2canvas(htmlDom, {
-        width: htmlDom.clientWidth, // DOM original width
-        height: htmlDom.clientHeight,
-        scrollY: -window.pageYOffset,
-        scrollX: 0,
-      })
-    )
-      .getContext('2d')
-      .getImageData(0, 0, htmlDom.clientWidth, htmlDom.clientHeight).data;
-  } catch {
+    const canvas = await html2canvas(elm, {
+      width: elm.clientWidth, // DOM original width
+      height: elm.clientHeight,
+      scrollY: -window.pageYOffset,
+      scrollX: 0,
+    });
+    // to check the canvas, add it to the app
+    // const img = document.createElement('img');
+    // img.src = canvas.toDataURL();
+    // document.body.appendChild(img);
+    return canvas.getContext('2d').getImageData(0, 0, elm.clientWidth, elm.clientHeight).data;
+  } catch (e) {
+    console.log(e);
     return ([] as unknown) as Uint8ClampedArray;
   }
-}
-
-async function testIt(htmlDom) {
-  // var htmlDom = document.getElementsByClassName('dialog_content')[0];
-
-  html2canvas(htmlDom, {
-    width: htmlDom.clientWidth, // DOM original width
-    height: htmlDom.clientHeight,
-    scrollY: -window.pageYOffset,
-    scrollX: 0,
-  }).then((canvas) => {
-    const img = document.createElement('img');
-    img.src = canvas.toDataURL();
-    document.body.appendChild(img);
-  });
 }
 
 function pixel2particle(pixel: Pixel): Particle {
@@ -176,6 +153,10 @@ function draw(particle: Particle): Particle | undefined {
   }
 }
 
+/**
+ * helper function for true random intergers.
+ * @param max the maxium returned
+ */
 function getRandomInt(max: number): number {
   const randomBuffer = new Uint32Array(1);
   window.crypto.getRandomValues(randomBuffer);
