@@ -7,6 +7,7 @@ import { HeroHireService } from './services';
 import { Pony } from '../r32020/list-view/ponies';
 import { numberOnly, phoneUS, phoneUK } from './helpers';
 import { HireRequest } from './models';
+import { Location } from './enums';
 
 @Component({
   selector: 'app-hero-hire',
@@ -17,7 +18,10 @@ export class HeroHireComponent implements OnInit {
 
   public heroBookingForm: FormGroup;
   public submitted: boolean;
+
   public today: string;
+  public location: Location;
+  public locationEnum = Location;
 
   public availableHeroes$: Observable<Pony[]>;
   public heroKinds$: Observable<string[]>;
@@ -26,6 +30,7 @@ export class HeroHireComponent implements OnInit {
 
   ngOnInit(): void {
     this.today = this.getToday();
+    this.location = Location.USA;
     this.initialiseForm();
     this.addSubscriptions();
   }
@@ -109,6 +114,13 @@ export class HeroHireComponent implements OnInit {
    */
   public get formControl(): {[key: string]: AbstractControl} {
     return this.heroBookingForm.controls;
+  }
+
+  /**
+   * Add some conditional validators to the form based on location
+   */
+  private setConditonalValidators(): void {
+
   }
 
   /**

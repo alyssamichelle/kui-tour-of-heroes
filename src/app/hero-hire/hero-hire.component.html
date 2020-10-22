@@ -34,9 +34,8 @@
     <kendo-formfield>
       <kendo-label [for]="name">Your Name<sup>*</sup></kendo-label>
       <input type="text" formControlName="name" #name>
-      <kendo-formerror *ngIf="submitted && formControl.name.hasError('required')">Please leave your name</kendo-formerror>
       <div class="error-field" *ngIf="submitted && formControl.name.hasError('required')">
-        Please provide your name
+        Please leave your name
       </div>
     </kendo-formfield>
 
