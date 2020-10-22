@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -11,9 +11,8 @@ import { HeroService } from '../hero.service';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  // @Input() hero: Hero;
 
-  // DJK2: Hero
+  // DJK2 Declarative approach
   hero$ = this.heroService.hero$;
 
   constructor(
@@ -26,18 +25,24 @@ export class HeroDetailComponent implements OnInit {
     this.getHero();
   }
 
-  // DJK2: Hero
   getHero(): void {
+    // Get the selected hero id from the route
+    // Call the service to emit that id
+    // find or retrieve the associated hero
     const id = +this.route.snapshot.paramMap.get('id');
-    this.heroService.changeHero(id);
+    this.heroService.selectHero(id);
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  save(): void {
-    // this.heroService.updateHero(this.hero)
-    //   .subscribe(() => this.goBack());
+  // DJK3 Save an updated hero
+  save(hero: Hero): void {
+    this.heroService.updateHero(hero);
+    // Instead of going back immediately
+    // Could define a "saveComplete" Action stream in the service,
+    // subscribe to it, and goBack when "saveComplete" emits.
+    this.goBack();
   }
 }

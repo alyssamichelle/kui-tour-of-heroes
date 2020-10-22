@@ -1,4 +1,4 @@
-<!-- DJK2: Hero -->
+<!-- DJK2 Use an async pipe -->
 <div *ngIf="hero$ | async as hero">
   <h2 [attr.data-text]="hero.name + ' Details'">{{hero.name}} Details</h2>
 
@@ -9,5 +9,5 @@
     </label>
   </div>
   <button (click)="goBack()">go back</button>
-  <button (click)="save()">save</button>
+  <button (click)="save(hero)">save</button>
 </div>

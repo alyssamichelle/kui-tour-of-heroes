@@ -13,10 +13,10 @@
 
 </kendo-formfield>
 
-<!-- <app-list-view></app-list-view> -->
+<app-list-view></app-list-view>
 
-<!-- DJK1: Heroes -->
 <ul class="heroes">
+  <!-- DJK1 Use an async pipe -->
   <li *ngFor="let hero of heroes$ | async">
     <a routerLink="/detail/{{hero.id}}">
       <img class="avatar" [src]="getAvatarLink(hero.id)" title="pony avatar img">

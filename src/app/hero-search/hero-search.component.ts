@@ -1,10 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-
-import { Observable, Subject } from 'rxjs';
-
-import {
-  debounceTime, distinctUntilChanged, switchMap
-} from 'rxjs/operators';
+import { Component } from '@angular/core';
 
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
@@ -15,23 +9,16 @@ import { Router } from '@angular/router';
   templateUrl: './hero-search.component.html',
   styleUrls: ['./hero-search.component.scss']
 })
-export class HeroSearchComponent implements OnInit {
-  // heroes$: Observable<Hero[]>;
-  // private searchTerms = new Subject<string>();
+export class HeroSearchComponent {
 
-  // DJK3: Search
+  // DJK Declarative approach
   heroes$ = this.heroService.filteredHeroes$;
 
   constructor(private heroService: HeroService, private router: Router) { }
 
-  // DJK3: Search
   // Push a search term into the observable stream.
   search(term: string): void {
-    this.heroService.searchHeroes(term);
-  }
-
-  public setInitialValue(): void {
-    this.search('');
+    this.heroService.search(term);
   }
 
   // on dropdownlist value change, navigate to that hero's detail page
@@ -39,18 +26,5 @@ export class HeroSearchComponent implements OnInit {
     if (hero.id) {
       this.router.navigate(['/detail/' + hero.id]);
     }
-  }
-
-  ngOnInit(): void {
-    // this.heroes$ = this.searchTerms.pipe(
-    //   // wait 300ms after each keystroke before considering the term
-    //   debounceTime(300),
-
-    //   // ignore new term if same as previous term
-    //   distinctUntilChanged(),
-
-    //   // switch to new search observable each time the term changes
-    //   switchMap((term: string) => this.heroService.searchHeroes(term)),
-    // );
   }
 }
