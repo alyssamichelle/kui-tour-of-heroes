@@ -21,7 +21,7 @@ export class BusyHttpInterceptor implements HttpInterceptor {
     this.busyService.increment(message);
 
     return next.handle(request).pipe(
-      delay(700), // for testing
+     // delay(700), // for testing
       finalize(() => {
         this.busyService.decrement();
       })
