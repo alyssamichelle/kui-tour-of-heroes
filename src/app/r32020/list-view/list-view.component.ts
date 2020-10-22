@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ponies } from './ponies';
+import { Component } from '@angular/core';
 
-import { Hero } from '../../hero';
 import { HeroService } from '../../hero.service';
 
 @Component({
@@ -9,28 +7,15 @@ import { HeroService } from '../../hero.service';
   templateUrl: './list-view.component.html',
   styleUrls: ['./list-view.component.scss']
 })
-export class ListViewComponent implements OnInit {
-  heroes: Hero[];
-  avatarLink: string;
-  public ponies: any[] = ponies;
+export class ListViewComponent {
+  avatarLink='';
 
+  // DJK Declarative approach
+  heroes$ = this.heroService.heroes$;
 
   constructor(private heroService: HeroService) { }
 
-  ngOnInit() {
-    this.getHeroes();
-  }
-
-  getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => {
-        this.heroes = heroes;
-      });
-  }
-
-  
-
-  getAvatarLink(heroId): string {
+  getAvatarLink(heroId: number): string {
     let avatarLink = '../assets/mlp-avatars/pony-' + heroId + '.png';
 
     if (heroId > 53) {

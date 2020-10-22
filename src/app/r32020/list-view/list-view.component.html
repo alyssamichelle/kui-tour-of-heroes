@@ -9,7 +9,7 @@
   </li>
 </ul> -->
 
-<kendo-listview [data]="ponies" [containerClass]="'k-d-flex k-flex-col k-flex-nowrap'">
+<kendo-listview [data]="heroes$ | async" [containerClass]="'k-d-flex k-flex-col k-flex-nowrap'">
   <ng-template kendoListViewItemTemplate let-dataItem="dataItem" let-index="index" let-isFirst="isFirst"
     let-isLast="isLast">
     <div class="product" [class.border-bottom]="!isLast">

@@ -3,17 +3,17 @@
 <h2 data-text="Top Heroes">Top Heroes</h2>
 
 <div class="pony-card-group">
-  <kendo-card [width]="'260px'" *ngFor="let hero of heroes">
+  <!-- DJK1 Use an async pipe -->
+  <kendo-card [width]="'260px'" *ngFor="let hero of heroes$ | async">
     <a routerLink="/detail/{{hero.id}}">
-    <kendo-card-header class="k-hbox">
-      <div>
-        <h3 kendoCardTitle>{{ hero.name }}</h3>
-        <p kendoCardSubtitle>{{ hero.id }}</p>
-      </div>
-    </kendo-card-header>
-    <!-- insert image here of pony -->
-    <img src="assets/images/retro-mlp/pinkie-pie.png" alt="placeholder img for all ponies">
+      <kendo-card-header class="k-hbox">
+        <div>
+          <h3 kendoCardTitle>{{ hero.name }}</h3>
+          <p kendoCardSubtitle>{{ hero.id }}</p>
+        </div>
+      </kendo-card-header>
+      <!-- insert image here of pony -->
+      <img src="assets/images/retro-mlp/pinkie-pie.png" alt="placeholder img for all ponies">
     </a>
   </kendo-card>
 </div>
-

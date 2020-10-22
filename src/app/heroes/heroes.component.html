@@ -16,7 +16,8 @@
 <app-list-view></app-list-view>
 
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
+  <!-- DJK1 Use an async pipe -->
+  <li *ngFor="let hero of heroes$ | async">
     <a routerLink="/detail/{{hero.id}}">
       <img class="avatar" [src]="getAvatarLink(hero.id)" title="pony avatar img">
       <div class="hero-name">{{hero.name}}</div>
