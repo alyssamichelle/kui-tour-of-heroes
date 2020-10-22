@@ -85,7 +85,7 @@ export class HeroHireComponent implements OnInit {
 
     if (this.heroBookingForm.valid) {
       const { hero, name, email, phone, date, gdpr } = this.heroBookingForm.value;
-      const hireRequest: HireRequest = { hero, name, email, phone, date, gdpr };
+      const hireRequest: HireRequest = { hero: hero.id, name, email, phone, date, gdpr };
 
       this.heroHireService.hireMyHero(hireRequest).subscribe(
         (res) => {
