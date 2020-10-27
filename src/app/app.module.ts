@@ -25,8 +25,6 @@ import { R32020Module }            from './r32020/r32020.module';
 import { NotificationModule, NOTIFICATION_CONTAINER } from '@progress/kendo-angular-notification';
 import { ToastComponent } from './toast/toast.component';
 
-
-
 @NgModule({
   imports: [
     BrowserModule,
