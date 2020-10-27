@@ -1,7 +1,9 @@
-import { NgModule }            from '@angular/core';
+import { BusyHttpInterceptor } from './common/busy-http-interceptor';
+
+import { ElementRef, NgModule }            from '@angular/core';
 import { BrowserModule }       from '@angular/platform-browser';
 import { FormsModule }         from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }            from './in-memory-data.service';
@@ -23,6 +25,10 @@ import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 
 import { R32020Module }            from './r32020/r32020.module';
 import { HeroHireModule } from './hero-hire/hero-hire.module';
+import { BusyComponent } from './common/busy/busy/busy.component';
+import { IndicatorsModule } from '@progress/kendo-angular-indicators';
+import { NotificationModule, NOTIFICATION_CONTAINER } from '@progress/kendo-angular-notification';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   imports: [
@@ -45,6 +51,8 @@ import { HeroHireModule } from './hero-hire/hero-hire.module';
     DropDownsModule,
     R32020Module,
     HeroHireModule,
+    IndicatorsModule,
+    NotificationModule
   ],
   declarations: [
     AppComponent,
@@ -52,8 +60,23 @@ import { HeroHireModule } from './hero-hire/hero-hire.module';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    BusyComponent,
+    ToastComponent
   ],
-  bootstrap: [ AppComponent ]
+  providers: [{
+    provide: NOTIFICATION_CONTAINER,
+    useFactory: () => {
+       //return the container ElementRef, where the notification will be injected
+       return { nativeElement: document.body } as ElementRef;
+    }
+  },
+  {
+    provide: HTTP_INTERCEPTORS, 
+    useClass: BusyHttpInterceptor, 
+    multi: true
+  }],
+  bootstrap: [ AppComponent ],
+
 })
 export class AppModule { }

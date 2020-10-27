@@ -1,0 +1,12 @@
+<div class="k-loading-panel" *ngIf="(busyState$ | async)?.isBusy">
+  <div class="k-loading-panel-mask"></div>
+  <div class="k-loading-panel-wrapper">
+    <kendo-loader
+      type="infinite-spinner"
+      themeColor="primary"
+      size="large"
+    >
+    </kendo-loader>
+    
+  </div>
+</div>
