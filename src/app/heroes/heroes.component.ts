@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
+import { NotificationService } from '@progress/kendo-angular-notification';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-heroes',
@@ -12,7 +13,11 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[];
   avatarLink: string;
 
-  constructor(private heroService: HeroService) { }
+  constructor(
+    private heroService: HeroService,
+    private notification: NotificationService,
+    private msg: MessageService
+  ) { }
 
   ngOnInit() {
     this.getHeroes();
@@ -31,13 +36,14 @@ export class HeroesComponent implements OnInit {
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
       .subscribe(hero => {
-        this.heroes.push(hero);
+        this.heroes.unshift(hero);
+        this.showMsg()
       });
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
-    this.heroService.deleteHero(hero).subscribe();
+    this.heroService.deleteHero(hero).subscribe(() => this.showMsg());
   }
 
   getAvatarLink(heroId): string {
@@ -50,4 +56,15 @@ export class HeroesComponent implements OnInit {
     return avatarLink;
   }
 
+  showMsg() {
+    this.notification.show({
+      content: this.msg.messages[this.msg.messages.length - 1],
+      cssClass: 'button-notification',
+      animation: { type: 'slide', duration: 400 },
+      position: { horizontal: 'right', vertical: 'bottom' },
+      type: { style: 'info', icon: true },
+      hideAfter: 3000,
+      // closable: true
+  });
+  }
 }
