@@ -1,5 +1,6 @@
 import { BusyHttpInterceptor } from './common/busy-http-interceptor';
-import { NgModule }            from '@angular/core';
+
+import { ElementRef, NgModule }            from '@angular/core';
 import { BrowserModule }       from '@angular/platform-browser';
 import { FormsModule }         from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
@@ -25,8 +26,8 @@ import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 import { R32020Module }            from './r32020/r32020.module';
 import { BusyComponent } from './common/busy/busy/busy.component';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
-
-
+import { NotificationModule, NOTIFICATION_CONTAINER } from '@progress/kendo-angular-notification';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     LayoutModule,
     DropDownsModule,
     R32020Module,
-    IndicatorsModule
+    IndicatorsModule,
+    NotificationModule
   ],
   declarations: [
     AppComponent,
@@ -57,11 +59,23 @@ import { IndicatorsModule } from '@progress/kendo-angular-indicators';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    BusyComponent
+    BusyComponent,
+    ToastComponent
   ],
-  providers:[ {
-    provide: HTTP_INTERCEPTORS, useClass: BusyHttpInterceptor, multi: true
+  providers: [{
+    provide: NOTIFICATION_CONTAINER,
+    useFactory: () => {
+       //return the container ElementRef, where the notification will be injected
+       return { nativeElement: document.body } as ElementRef;
+    }
+  },
+  {
+    provide: HTTP_INTERCEPTORS, 
+    useClass: BusyHttpInterceptor, 
+    multi: true
   }],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+
 })
 export class AppModule { }
+

@@ -4,6 +4,7 @@
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine",
+      "@hirez_io/jasmine-given",
       "node"
     ]
   },
