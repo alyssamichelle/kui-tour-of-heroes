@@ -15,6 +15,7 @@
     "@progress/kendo-angular-buttons": "^5.4.2",
     "@progress/kendo-angular-common": "^1.0.0",
     "@progress/kendo-angular-dropdowns": "^4.3.2",
+    "@progress/kendo-angular-indicators": "^0.2.0",
     "@progress/kendo-angular-inputs": "^6.7.1",
     "@progress/kendo-angular-intl": "^2.0.3",
     "@progress/kendo-angular-l10n": "^2.0.0",
