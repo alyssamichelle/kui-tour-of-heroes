@@ -24,6 +24,7 @@ import { LayoutModule }            from '@progress/kendo-angular-layout';
 import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 
 import { R32020Module }            from './r32020/r32020.module';
+import { HeroHireModule } from './hero-hire/hero-hire.module';
 import { BusyComponent } from './common/busy/busy/busy.component';
 import { IndicatorsModule } from '@progress/kendo-angular-indicators';
 import { NotificationModule, NOTIFICATION_CONTAINER } from '@progress/kendo-angular-notification';
@@ -49,6 +50,7 @@ import { ToastComponent } from './toast/toast.component';
     LayoutModule,
     DropDownsModule,
     R32020Module,
+    HeroHireModule,
     IndicatorsModule,
     NotificationModule
   ],
@@ -78,4 +80,3 @@ import { ToastComponent } from './toast/toast.component';
 
 })
 export class AppModule { }
-
