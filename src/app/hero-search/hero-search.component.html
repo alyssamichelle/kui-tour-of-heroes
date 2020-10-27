@@ -4,8 +4,8 @@
         (open)="setInitialValue()"
         [data]="heroes$ | async"
         [filterable]="true"
-        [textField]="'name'"
-        [valueField]="'id'"
+        textField="name"
+        valueField="id"
         (filterChange)="search($event)"
         (valueChange)="onValueChange($event)"
         >
