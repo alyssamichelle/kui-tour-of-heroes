@@ -1,4 +1,4 @@
-import { NgModule }            from '@angular/core';
+import { ElementRef, NgModule }            from '@angular/core';
 import { BrowserModule }       from '@angular/platform-browser';
 import { FormsModule }         from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
@@ -22,9 +22,8 @@ import { LayoutModule }            from '@progress/kendo-angular-layout';
 import { DropDownsModule }         from '@progress/kendo-angular-dropdowns';
 
 import { R32020Module }            from './r32020/r32020.module';
-import { NotificationModule } from '@progress/kendo-angular-notification';
-
-
+import { NotificationModule, NOTIFICATION_CONTAINER } from '@progress/kendo-angular-notification';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   imports: [
@@ -54,8 +53,17 @@ import { NotificationModule } from '@progress/kendo-angular-notification';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    ToastComponent
   ],
-  bootstrap: [ AppComponent ]
+  providers: [{
+    provide: NOTIFICATION_CONTAINER,
+    useFactory: () => {
+       //return the container ElementRef, where the notification will be injected
+       return { nativeElement: document.body } as ElementRef;
+    }
+  }],
+  bootstrap: [ AppComponent ],
+
 })
 export class AppModule { }
