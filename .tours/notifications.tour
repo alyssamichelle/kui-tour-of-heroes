@@ -1,0 +1,78 @@
+{
+  "title": "notifications",
+  "steps": [
+    {
+      "file": "package.json",
+      "line": 24,
+      "description": "run ng add @progress/kendo-angular-notification",
+      "title": "install kendo component"
+    },
+    {
+      "file": "src/app/app.module.ts",
+      "line": 50,
+      "description": "check imports",
+      "title": "automatic imports"
+    },
+    {
+      "file": "src/app/toast/toast-service.service.ts",
+      "line": 10,
+      "description": "add new service",
+      "title": "new service"
+    },
+    {
+      "file": "src/app/toast/toast.component.ts",
+      "line": 9,
+      "description": "add component",
+      "title": "new component"
+    },
+    {
+      "file": "src/app/app.component.html",
+      "line": 19,
+      "description": "add component to app template",
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 24
+        }
+      },
+      "title": "add to app"
+    },
+    {
+      "file": "src/app/app.module.ts",
+      "line": 61,
+      "description": "add provider to the app",
+      "selection": {
+        "start": {
+          "line": 62,
+          "character": 3
+        },
+        "end": {
+          "line": 65,
+          "character": 10
+        }
+      },
+      "title": "add provider"
+    },
+    {
+      "file": "src/app/hero.service.ts",
+      "line": 124,
+      "description": "add to show messages",
+      "selection": {
+        "start": {
+          "line": 124,
+          "character": 10
+        },
+        "end": {
+          "line": 124,
+          "character": 22
+        }
+      },
+      "title": "toast call"
+    }
+  ],
+  "ref": "kate-1"
+}
