@@ -28,8 +28,6 @@ export class ListViewComponent implements OnInit {
       });
   }
 
-  
-
   getAvatarLink(heroId): string {
     let avatarLink = '../assets/mlp-avatars/pony-' + heroId + '.png';
 
