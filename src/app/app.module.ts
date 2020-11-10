@@ -29,6 +29,8 @@ import {BusyComponent} from './common/busy/busy/busy.component';
 import {IndicatorsModule} from '@progress/kendo-angular-indicators';
 import {NotificationModule, NOTIFICATION_CONTAINER} from '@progress/kendo-angular-notification';
 import {ToastComponent} from './toast/toast.component';
+import { GridModule } from '@progress/kendo-angular-grid';
+
 
 @NgModule({
   imports: [
@@ -51,6 +53,7 @@ import {ToastComponent} from './toast/toast.component';
     HeroHireModule,
     IndicatorsModule,
     NotificationModule,
+    GridModule,
   ],
   declarations: [
     AppComponent,
