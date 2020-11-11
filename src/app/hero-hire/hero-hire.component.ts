@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 
-import { HeroHireService } from './services';
+import { HeroHireService } from './services/hero-hire.service';
 
-import { Pony } from '../r32020/list-view/ponies';
+import { Pony } from '../ponies';
 import { numberOnly, phoneUS, phoneUK } from './helpers';
 import { HireRequest } from './models';
 import { Location } from './enums';

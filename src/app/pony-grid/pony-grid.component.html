@@ -1,0 +1,52 @@
+<h2>Pony Grid</h2>
+
+<!-- <kendo-grid
+  [kendoGridBinding]="ponies"
+  [height]="410"
+  >
+</kendo-grid> -->
+
+<!-- You can specify the columns -->
+<!-- Why would you want to do that? Data that isn't needed, rearrange the data, supply a default width for the column -->
+
+<!-- <kendo-grid
+  [kendoGridBinding]="ponies"
+  [height]="410"
+  >
+  <kendo-grid-column field="name" [width]="90"></kendo-grid-column>
+  <kendo-grid-column field="alias" [width]="110"></kendo-grid-column>
+  <kendo-grid-column field="residence" [width]="130"></kendo-grid-column>
+  <kendo-grid-column field="occupation" [width]="200"></kendo-grid-column>
+  <kendo-grid-column field="url" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="sex" [width]="50"></kendo-grid-column>
+  <kendo-grid-column field="images[0]" [width]="130"></kendo-grid-column>
+
+</kendo-grid> -->
+
+
+<!-- resizing the columns -->
+<!-- [resizable]="true" -->
+
+<!-- modifying/customizing the column titles and content? -->
+
+<kendo-grid
+  [kendoGridBinding]="ponies"
+  [height]="410"
+  [resizable]="true"
+  >
+  <kendo-grid-column [width]="100">
+    <ng-template kendoGridCellTemplate let-pony>
+      <img class="pony-headshot" *ngIf="pony.images[0]" [src]="pony.images[0]" alt="an image of the character" />
+    </ng-template>
+  </kendo-grid-column>
+  <kendo-grid-column field="name" [width]="90"></kendo-grid-column>
+  <kendo-grid-column field="alias" [width]="110"></kendo-grid-column>
+  <kendo-grid-column field="residence" [width]="130"></kendo-grid-column>
+  <kendo-grid-column field="occupation" [width]="200"></kendo-grid-column>
+  <kendo-grid-column field="url" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="sex" [width]="50"></kendo-grid-column>
+
+
+</kendo-grid>
+
+<!-- storing that resize info -->

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Pony, ponies } from '../../r32020/list-view/ponies';
+import { Pony, ponies } from '../../ponies';
 import { HireRequest } from '../models';
 
 @Injectable({

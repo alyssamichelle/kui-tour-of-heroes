@@ -2,6 +2,8 @@
 
 <h2 data-text="Top Heroes">Top Heroes</h2>
 
+<app-pony-grid></app-pony-grid>
+
 <div class="pony-card-group">
   <kendo-card [width]="'260px'" *ngFor="let hero of heroes">
     <a routerLink="/detail/{{hero.id}}">
