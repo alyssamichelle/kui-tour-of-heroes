@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ponies } from '../ponies';
 
 // import { HeroHireService } from './services';
@@ -7,7 +7,8 @@ import { ponies } from '../ponies';
 @Component({
   selector: 'app-pony-grid',
   templateUrl: './pony-grid.component.html',
-  styleUrls: ['./pony-grid.component.scss']
+  styleUrls: ['./pony-grid.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class PonyGridComponent implements OnInit {
 

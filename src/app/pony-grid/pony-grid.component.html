@@ -31,10 +31,10 @@
 
 <kendo-grid
   [kendoGridBinding]="ponies"
-  [height]="410"
+  [height]="600"
   [resizable]="true"
   >
-  <kendo-grid-column [width]="100">
+  <kendo-grid-column [width]="100" class="td-special">
     <ng-template kendoGridCellTemplate let-pony>
       <img class="pony-headshot" *ngIf="pony.images[0]" [src]="pony.images[0]" alt="an image of the character" />
     </ng-template>
