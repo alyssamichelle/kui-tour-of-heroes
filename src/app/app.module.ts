@@ -23,7 +23,7 @@ import {ButtonsModule} from '@progress/kendo-angular-buttons';
 import {LayoutModule} from '@progress/kendo-angular-layout';
 import {DropDownsModule} from '@progress/kendo-angular-dropdowns';
 import {ExplodeDirective} from './explode/explode.directive';
-import {R32020Module} from './r32020/r32020.module';
+import {LVM } from './list-view/list-view.module';
 import {HeroHireModule} from './hero-hire/hero-hire.module';
 import {BusyComponent} from './common/busy/busy/busy.component';
 import {IndicatorsModule} from '@progress/kendo-angular-indicators';
@@ -50,7 +50,7 @@ import { PonyGridComponent } from './pony-grid/pony-grid.component';
     ButtonsModule,
     LayoutModule,
     DropDownsModule,
-    R32020Module,
+    LVM,
     HeroHireModule,
     IndicatorsModule,
     NotificationModule,

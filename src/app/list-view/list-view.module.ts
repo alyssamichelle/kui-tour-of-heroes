@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListViewComponent } from './list-view/list-view.component'; import { ListViewModule } from '@progress/kendo-angular-listview';
+import { ListViewComponent } from './list-view.component'; 
+import { ListViewModule } from '@progress/kendo-angular-listview';
 import { RouterModule } from '@angular/router';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 
@@ -16,4 +17,4 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
     ListViewComponent
   ]
 })
-export class R32020Module { }
+export class LVM { }
