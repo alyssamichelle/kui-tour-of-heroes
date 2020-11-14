@@ -2,57 +2,55 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 .k-listview {
-    font-family: sans-serif;
-    height: 340px;
-    flex: 1;
-    margin: 0 10px;
+  font-family: sans-serif;
+  height: 340px;
+  flex: 1;
+  margin: 0 10px;
 }
 .product {
-    padding: 8px;
-    width: 100%;
+  padding: 8px;
+  width: 100%;
 }
 .product-name {
-    margin: 0 4px;
+  margin: 0 4px;
 }
 .item-postion {
-    font-style: italic;
+  font-style: italic;
 }
 .product.border-bottom {
-    border-bottom-width: 1px;
-    border-bottom-color: lightgrey;
+  border-bottom-width: 1px;
+  border-bottom-color: lightgrey;
 }
 
 // Styles for Small Pony Card/Chips VVV
-
 $pony-pink: #f03c97;
 
 .heroes {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 6% 2em 0;
-    display: flex;
-    flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 6% 2em 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .heroes li {
   cursor: pointer;
-  background-color: #EEE;
-  margin: .5em;
+  background-color: #eee;
+  margin: 0.5em;
   height: 3rem;
   width: 17em;
   border-radius: 4px;
-  
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .heroes li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
+  color: #607d8b;
+  background-color: #ddd;
+  left: 0.1em;
 }
 
 .heroes a {
@@ -80,7 +78,7 @@ $pony-pink: #f03c97;
 }
 
 .heroes a:hover {
-  color: #607D8B;
+  color: #607d8b;
 }
 
 .heroes .avatar {
@@ -90,7 +88,7 @@ $pony-pink: #f03c97;
   padding: 0.5em;
   background-color: $pony-pink;
   height: 100%;
-  border-radius: 4px 0 0 4px;    
+  border-radius: 4px 0 0 4px;
   max-width: 60px;
   overflow: hidden;
 }
@@ -115,7 +113,7 @@ button.delete {
 }
 
 @media all and (max-width: 699px) {
-  .heroes li { 
+  .heroes li {
     margin: 1.2em;
     width: 100vw;
   }
