@@ -1,6 +1,13 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .k-listview {
     font-family: sans-serif;
     height: 340px;
+    flex: 1;
+    margin: 0 10px;
 }
 .product {
     padding: 8px;
@@ -17,7 +24,7 @@
     border-bottom-color: lightgrey;
 }
 
-/* hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm */
+// Styles for Small Pony Card/Chips VVV
 
 $pony-pink: #f03c97;
 
