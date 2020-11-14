@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ponies } from '../ponies';
-
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
@@ -13,7 +12,6 @@ export class ListViewComponent implements OnInit {
   heroes: Hero[];
   avatarLink: string;
   public ponies: any[] = ponies;
-
 
   constructor(private heroService: HeroService) { }
 
