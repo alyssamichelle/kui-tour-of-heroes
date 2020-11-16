@@ -8,6 +8,7 @@ import { Hero } from './hero';
 import { MessageService } from './message.service';
 import { ToastService } from './toast/toast-service.service';
 
+import { delay } from 'rxjs/internal/operators';
 
 @Injectable({ providedIn: 'root' })
 export class HeroService {
