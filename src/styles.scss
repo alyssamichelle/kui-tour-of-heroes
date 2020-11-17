@@ -3,9 +3,14 @@
 @import 'src/assets/colors.scss';
 
 //powder-blue theme
-// @import 'src/assets/powder-blue/variables.scss';
-// show replacing below line with only the comps we need
+@import 'src/assets/powder-blue/variables.scss';
+
 @import "~@progress/kendo-theme-default/dist/all.scss";
+// show replacing below line with only the comps we need
+// @import "~@progress/kendo-theme-default/scss/grid/_index.scss";
+// @import "~@progress/kendo-theme-default/scss/input/_index.scss";
+// @import "~@progress/kendo-theme-default/scss/button/_index.scss";
+// @import "~@progress/kendo-theme-default/scss/listview/_index.scss";
 
 // Global Defaults
 * {

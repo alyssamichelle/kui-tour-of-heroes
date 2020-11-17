@@ -21,7 +21,7 @@ export class ListViewComponent implements OnInit {
     previousNext: false,
     type: "numeric"
   };
-  public pageSize = 5;
+  public pageSize = 2;
   loader:boolean = true;
 
   constructor(private heroService: HeroService) { }
@@ -30,10 +30,23 @@ export class ListViewComponent implements OnInit {
     this.getHeroes();
   }
 
+  // getHeroes(): void {
+  //   this.heroService.getHeroes()
+  //     .subscribe(heroes => {
+  //       this.heroes = heroes;
+  //     });
+  // }
+
   getHeroes(): void {
+    var self = this;
     this.heroService.getHeroes()
-      .subscribe(heroes => {
-        this.heroes = heroes;
+      .subscribe({
+        next(heroes) {
+          self.heroes = heroes;
+        },
+        complete() {
+          self.loader = false;
+        }
       });
   }
   // redo getHeros to know when loading is fin
@@ -49,13 +62,13 @@ export class ListViewComponent implements OnInit {
   }
 
   // FILTERING with search TextBox on ListView
-  // public handleFilterChange(query: string): void {
-  //   const normalizedQuery = query.toLowerCase();
-  //   const filterExpession = item =>
-  //     item.name.toLowerCase().indexOf(normalizedQuery) !== -1 ||
-  //     (item.alias != null &&
-  //       item.alias?.toLowerCase().indexOf(normalizedQuery) !== -1);
+  public handleFilterChange(query: string): void {
+    const normalizedQuery = query.toLowerCase();
+    const filterExpession = item =>
+      item.name.toLowerCase().indexOf(normalizedQuery) !== -1 ||
+      (item.alias != null &&
+        item.alias?.toLowerCase().indexOf(normalizedQuery) !== -1);
 
-  //   this.ponies = ponies.filter(filterExpession);
-  // }
+    this.ponies = ponies.filter(filterExpession);
+  }
 }

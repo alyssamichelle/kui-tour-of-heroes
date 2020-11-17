@@ -31,6 +31,11 @@ import {NotificationModule, NOTIFICATION_CONTAINER} from '@progress/kendo-angula
 import {ToastComponent} from './toast/toast.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { PonyGridComponent } from './pony-grid/pony-grid.component';
+import { PonyChartComponent } from './pony-chart/pony-chart.component';
+import { ChartsModule } from '@progress/kendo-angular-charts';
+import 'hammerjs';
+
+
 
 
 @NgModule({
@@ -55,6 +60,7 @@ import { PonyGridComponent } from './pony-grid/pony-grid.component';
     IndicatorsModule,
     NotificationModule,
     GridModule,
+    ChartsModule,
   ],
   declarations: [
     AppComponent,
@@ -67,6 +73,7 @@ import { PonyGridComponent } from './pony-grid/pony-grid.component';
     ToastComponent,
     ExplodeDirective,
     PonyGridComponent,
+    PonyChartComponent,
   ],
   providers: [
     {

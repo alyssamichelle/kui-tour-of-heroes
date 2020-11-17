@@ -11,6 +11,11 @@ import { ponies } from '../ponies';
   encapsulation: ViewEncapsulation.None
 })
 export class PonyGridComponent implements OnInit {
+  public buttonCount = 6;
+  public info = false;
+  public type: 'numeric' | 'input' = 'numeric';
+  public pageSizes = true;
+  public previousNext = false;
 
   public ponies: any[] = ponies;
   constructor() { }
