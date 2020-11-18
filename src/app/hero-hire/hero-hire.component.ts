@@ -12,7 +12,7 @@ import { Location } from './enums';
 @Component({
   selector: 'app-hero-hire',
   templateUrl: './hero-hire.component.html',
-  styleUrls: ['./hero-hire.component.css']
+  styleUrls: ['./hero-hire.component.scss']
 })
 export class HeroHireComponent implements OnInit {
 
