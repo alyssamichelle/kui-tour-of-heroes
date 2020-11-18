@@ -26,6 +26,8 @@ export class HeroHireComponent implements OnInit {
   public availableHeroes$: Observable<Pony[]>;
   public heroKinds$: Observable<string[]>;
 
+  public phoneMask: string = '(999) 000-0000';
+
   constructor(private formBuilder: FormBuilder, private heroHireService: HeroHireService) { }
 
   ngOnInit(): void {

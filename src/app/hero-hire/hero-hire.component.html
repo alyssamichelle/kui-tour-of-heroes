@@ -33,7 +33,7 @@
 
     <kendo-formfield>
       <kendo-label [for]="name">Your Name<sup>*</sup></kendo-label>
-      <input type="text" formControlName="name" #name>
+      <input kendoTextBox type="text" formControlName="name" #name>
       <div class="error-field" *ngIf="submitted && formControl.name.hasError('required')">
         Please leave your name
       </div>
@@ -41,7 +41,7 @@
 
     <kendo-formfield>
       <kendo-label [for]="email">Contact Email<sup>*</sup></kendo-label>
-      <input type="email" formControlName="email" #email>
+      <input kendoTextBox type="email" formControlName="email" #email>
       <div class="error-field" *ngIf="submitted && formControl.email.hasError('required')">
         Please provide an email address
       </div>
@@ -52,10 +52,26 @@
     
     <kendo-formfield>
       <kendo-label [for]="phone">Contact Telephone</kendo-label>
-      <input type="text" formControlName="phone" #phone>
+      <input kendoTextBox type="text" formControlName="phone" #phone>
+      <kendo-formerror></kendo-formerror>
       <div class="error-field" *ngIf="submitted && formControl.phone.hasError('pattern')">
         Not a valid phone number
       </div>
+    </kendo-formfield>
+
+    <!-- CHRIS: I want to use KUI form error messages -->
+    <!-- Form control validation in the constructor https://www.telerik.com/kendo-angular-ui/components/forms/forms-guideline/ -->
+    <!-- <kendo-formfield>
+      <kendo-label [for]="phone" text="Contact Telephone"></kendo-label>
+      <kendo-maskedtextbox #phone [formControlName]="'phone'" [mask]="phoneMask"
+        [value]="phoneValue"></kendo-maskedtextbox>
+      <kendo-formerror>
+        <div *ngIf="form.controls.phone.errors">Error: Not a valid phone number format</div>
+        <div *ngIf="form.controls.phone.errors?.required">Error: Phone number is required</div>
+      </kendo-formerror>
+
+      <kendo-formerror *ngIf="form.controls.phone.errors">
+        {{form.controls.phone.errors | json}}</kendo-formerror>
     </kendo-formfield>
 
     <kendo-formfield>
@@ -64,7 +80,7 @@
       <div class="error-field" *ngIf="submitted && formControl.date.hasError('required')">
         Please select your hire date
       </div>
-    </kendo-formfield>
+    </kendo-formfield> -->
     
     <kendo-formfield *ngIf="location === locationEnum.EUROPE || location === locationEnum.UK">
       <div class="wrap">
