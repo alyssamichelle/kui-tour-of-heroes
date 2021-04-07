@@ -1,27 +1,10 @@
 <h2>Pony Grid</h2>
 
 <!-- simple-grid -->
-<!-- <kendo-grid
-  [kendoGridBinding]="ponies"
-  [height]="410"
-  >
-</kendo-grid> -->
+
 
 <!-- You can specify the columns grid-columns-->
 <!-- Why would you want to do that? Data that isn't needed, rearrange the data, supply a default width for the column -->
-<!-- <kendo-grid
-  [kendoGridBinding]="ponies"
-  [height]="410"
-  [resizable]="true"
-  >
-  <kendo-grid-column field="name" [width]="90"></kendo-grid-column>
-  <kendo-grid-column field="alias" [width]="110"></kendo-grid-column>
-  <kendo-grid-column field="residence" [width]="130"></kendo-grid-column>
-  <kendo-grid-column field="occupation" [width]="200"></kendo-grid-column>
-  <kendo-grid-column field="url" [width]="100"></kendo-grid-column>
-  <kendo-grid-column field="sex" [width]="50"></kendo-grid-column>
-  <kendo-grid-column field="images[0]" [width]="130"></kendo-grid-column>
-</kendo-grid> -->
 
 
 <!-- resizing the columns -->
@@ -32,18 +15,6 @@
   [kendoGridBinding]="ponies"
   [height]="600"
   [resizable]="true"
-  [pageSize]="20"
-
-  [pageable]="{
-    buttonCount: buttonCount,
-    info: info,
-    type: type,
-    pageSizes: pageSizes,
-    previousNext: previousNext
-  }"
-  [sortable]="true"
-  [groupable]="true"
-  [reorderable]="true"
   >
   <kendo-grid-column [width]="100" class="td-special">
     <ng-template kendoGridCellTemplate let-pony>
