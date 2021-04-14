@@ -3,6 +3,8 @@
     <kendo-dropdownlist
         (open)="setInitialValue()"
         [data]="heroes$ | async"
+        [defaultItem]="defaultHero"
+        [itemDisabled]="itemDisabled"
         [filterable]="true"
         textField="name"
         valueField="id"
@@ -10,6 +12,4 @@
         (valueChange)="onValueChange($event)"
         >
     </kendo-dropdownlist>
-    <!-- TODO: figure out why this is jank vv -->
-    <!-- [defaultItem]="'Find your Hero ...'" -->
 </div>

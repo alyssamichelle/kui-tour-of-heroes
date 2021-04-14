@@ -19,6 +19,11 @@ export class HeroSearchComponent implements OnInit {
   heroes$: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
 
+  defaultHero: Hero = {
+    id: null,
+    name: 'Find your Hero ...',
+  };
+
   constructor(private heroService: HeroService, private router: Router) {}
 
   // Push a search term into the observable stream.
@@ -48,5 +53,9 @@ export class HeroSearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.heroService.searchHeroes(term)),
     );
+  }
+
+  itemDisabled(item: any) {
+    return item.dataItem.id === null; // disable the placeholder defaultHero
   }
 }
